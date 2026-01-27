@@ -1,0 +1,4 @@
+# file: C:\Users\U52476\dev\sep_solver-main\sep_solver-main\sep_solver\evaluators\custom_constraints.py
+# hypothesis_version: 6.151.2
+
+[0.0, 1.1, 'DesignObject', 'acyclic', 'connected', 'equals', 'fully_connected', 'max', 'min', 'not_equals']

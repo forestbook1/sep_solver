@@ -1,0 +1,4 @@
+# file: C:\Users\genun\dev\sep_solver\sep_solver\core\interfaces.py
+# hypothesis_version: 6.151.2
+
+['AssignmentSpace', 'Constraint', 'ConstraintViolation', 'DesignObject', 'Modification', 'Structure', 'VariableAssignment', 'random']

@@ -1,0 +1,4 @@
+# file: C:\Users\U52476\dev\sep_solver-main\sep_solver-main\sep_solver\generators\variable_assigner.py
+# hypothesis_version: 6.151.2
+
+[0.0, 1.0, 2.0, 100, '.', 'AssignmentSpace', 'Domain', 'Structure', 'VariableAssignment', 'bool', 'constraints', 'default', 'depends_on', 'enum', 'float', 'heuristic', 'int', 'max', 'min', 'random', 'range', 'string', 'systematic', 'type', 'values', 'variable']

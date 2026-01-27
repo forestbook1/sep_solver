@@ -1,0 +1,4 @@
+# file: C:\Users\U52476\dev\sep_solver-main\sep_solver-main\sep_solver\core\config.py
+# hypothesis_version: 6.151.2
+
+[100, 1000, 'CRITICAL', 'DEBUG', 'ERROR', 'INFO', 'SEP_ENABLE_DEBUG', 'SEP_ENABLE_LOGGING', 'SEP_LOG_LEVEL', 'SEP_MAX_ITERATIONS', 'SEP_MAX_SOLUTIONS', 'SEP_TIMEOUT_SECONDS', 'SolverConfig', 'WARNING', 'best_first', 'breadth_first', 'cache_evaluations', 'cache_size', 'custom_settings', 'depth_first', 'enable_debug_tracing', 'enable_logging', 'enabled_plugins', 'exploration_strategy', 'heuristic', 'log_level', 'max_iterations', 'max_solutions', 'max_structure_size', 'parallel_evaluation', 'plugin_directories', 'r', 'random', 'strict_validation', 'systematic', 'timeout_seconds', 'true', 'w']

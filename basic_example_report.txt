@@ -1,0 +1,71 @@
+SEP Solver Solution Report
+==================================================
+
+Generated: 2026-01-27 15:07:11
+Total Solutions: 3
+
+Executive Summary
+--------------------
+- Solutions found: 3
+- Component range: 2-5 per solution
+- Relationship range: 0-0 per solution
+- Variable range: 0-0 per solution
+
+Comparative Analysis
+--------------------
+Structure Comparison:
+  Components: avg=3.3, range=2-5
+  Relationships: avg=0.0, range=0-0
+
+Variable Analysis:
+  Total unique variables: 0
+  Common variables: 0
+
+Average solution similarity: 0.64
+
+Solution Details
+--------------------
+
+Solution 1: candidate_22_1339
+=============================
+Structure Overview:
+  - 2 components
+  - 0 relationships
+  - 0 variables
+
+Components:
+  - comp_0 (storage)
+  - comp_1 (actuator)
+
+
+----------------------------------------
+
+Solution 2: candidate_30_1349
+=============================
+Structure Overview:
+  - 3 components
+  - 0 relationships
+  - 0 variables
+
+Components:
+  - comp_0 (storage)
+  - comp_1 (actuator)
+  - comp_2 (memory)
+
+
+----------------------------------------
+
+Solution 3: candidate_44_1353
+=============================
+Structure Overview:
+  - 5 components
+  - 0 relationships
+  - 0 variables
+
+Components:
+  - comp_0 (storage)
+  - comp_1 (actuator)
+  - comp_2 (memory)
+  - variant_comp_4 (network)
+  - variant_comp_5 (storage)
+

@@ -1,0 +1,4 @@
+# file: C:\Users\U52476\dev\sep_solver-main\sep_solver-main\sep_solver\core\plugin_system.py
+# hypothesis_version: 6.151.2
+
+['*.py', '1.0.0', 'PluginMetadata', 'SEP Solver', '__', '__init__.py', 'author', 'component_type', 'component_types', 'config_schema', 'constraint_evaluator', 'dependencies', 'description', 'name', 'plugins', 'register_plugins', 'schema_validator', 'structure_generator', 'variable_assigner', 'version', 'w']

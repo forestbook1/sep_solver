@@ -1,0 +1,4 @@
+# file: C:\Users\U52476\dev\sep_solver-main\sep_solver-main\sep_solver\evaluators\schema_validator.py
+# hypothesis_version: 6.151.2
+
+['NoneType', 'additionalProperties', 'array', 'bool', 'boolean', 'dict', 'enum', 'float', 'instance', 'int', 'integer', 'list', 'maxLength', 'maximum', 'minLength', 'minimum', 'null', 'number', 'object', 'pattern', 'required', 'root', 'str', 'string', 'type']

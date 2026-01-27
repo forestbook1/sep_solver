@@ -1,0 +1,4 @@
+# file: C:\Users\U52476\dev\sep_solver-main\sep_solver-main\sep_solver\models\constraint_set.py
+# hypothesis_version: 6.151.2
+
+['DesignObject', 'affected_components', 'description', 'error', 'global', 'global_constraints', 'id', 'structural', 'total', 'type', 'variable', 'variable_constraints']

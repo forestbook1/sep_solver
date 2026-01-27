@@ -1,0 +1,2530 @@
+{
+  "breadth_first": {
+    "strategy": "breadth_first",
+    "solutions_found": 8,
+    "iterations_completed": 8,
+    "total_time": 0.04746890068054199,
+    "success_rate": 1.0,
+    "iterations_per_second": 171.76228100309172,
+    "solutions_per_second": 171.76228100309172,
+    "average_evaluation_time": 0.004943937063217163,
+    "statistics": {
+      "total_solutions": 8,
+      "average_components": 3.125,
+      "average_relationships": 3.625,
+      "average_variables": 0.0,
+      "component_range": [
+        1,
+        5
+      ],
+      "relationship_range": [
+        0,
+        10
+      ],
+      "variable_range": [
+        0,
+        0
+      ]
+    },
+    "solutions": [
+      {
+        "id": "candidate_1",
+        "structure": {
+          "components": [
+            {
+              "id": "comp_0",
+              "type": "processor",
+              "properties": {
+                "capacity": 38,
+                "priority": "low",
+                "active": true
+              }
+            }
+          ],
+          "relationships": [],
+          "structural_constraints": 0
+        },
+        "variables": {
+          "assignments": {},
+          "domains": {},
+          "dependencies": {}
+        },
+        "metadata": {
+          "generation_strategy": "breadth_first",
+          "iteration": 1,
+          "timestamp": 1769489491.703261
+        }
+      },
+      {
+        "id": "candidate_2",
+        "structure": {
+          "components": [
+            {
+              "id": "comp_0",
+              "type": "actuator",
+              "properties": {
+                "capacity": 60,
+                "priority": "high",
+                "active": false
+              }
+            },
+            {
+              "id": "comp_1",
+              "type": "processor",
+              "properties": {
+                "capacity": 83,
+                "priority": "high",
+                "active": true
+              }
+            },
+            {
+              "id": "comp_2",
+              "type": "network",
+              "properties": {
+                "capacity": 98,
+                "priority": "high",
+                "active": false
+              }
+            },
+            {
+              "id": "comp_3",
+              "type": "memory",
+              "properties": {
+                "capacity": 66,
+                "priority": "high",
+                "active": false
+              }
+            }
+          ],
+          "relationships": [
+            {
+              "id": "rel_0",
+              "source_id": "comp_0",
+              "target_id": "comp_2",
+              "type": "depends_on",
+              "properties": {
+                "strength": 0.5580724313148019,
+                "bidirectional": true
+              }
+            },
+            {
+              "id": "rel_1",
+              "source_id": "comp_2",
+              "target_id": "comp_1",
+              "type": "monitors",
+              "properties": {
+                "strength": 0.915116799455758,
+                "bidirectional": true
+              }
+            },
+            {
+              "id": "rel_2",
+              "source_id": "comp_2",
+              "target_id": "comp_3",
+              "type": "connects_to",
+              "properties": {
+                "strength": 0.4761905516991234,
+                "bidirectional": false
+              }
+            },
+            {
+              "id": "rel_3",
+              "source_id": "comp_2",
+              "target_id": "comp_3",
+              "type": "controls",
+              "properties": {
+                "strength": 0.766442875879329,
+                "bidirectional": true
+              }
+            },
+            {
+              "id": "rel_4",
+              "source_id": "comp_3",
+              "target_id": "comp_0",
+              "type": "connects_to",
+              "properties": {
+                "strength": 0.44933108170852154,
+                "bidirectional": false
+              }
+            },
+            {
+              "id": "rel_5",
+              "source_id": "comp_3",
+              "target_id": "comp_2",
+              "type": "controls",
+              "properties": {
+                "strength": 0.6793943554752246,
+                "bidirectional": false
+              }
+            },
+            {
+              "id": "rel_6",
+              "source_id": "comp_2",
+              "target_id": "comp_3",
+              "type": "connects_to",
+              "properties": {
+                "strength": 0.115331190183453,
+                "bidirectional": true
+              }
+            },
+            {
+              "id": "rel_7",
+              "source_id": "comp_3",
+              "target_id": "comp_0",
+              "type": "monitors",
+              "properties": {
+                "strength": 0.47720025416126444,
+                "bidirectional": false
+              }
+            }
+          ],
+          "structural_constraints": 0
+        },
+        "variables": {
+          "assignments": {},
+          "domains": {},
+          "dependencies": {}
+        },
+        "metadata": {
+          "generation_strategy": "breadth_first",
+          "iteration": 2,
+          "timestamp": 1769489491.7041485
+        }
+      },
+      {
+        "id": "candidate_3",
+        "structure": {
+          "components": [
+            {
+              "id": "comp_0",
+              "type": "memory",
+              "properties": {
+                "capacity": 81,
+                "priority": "high",
+                "active": true
+              }
+            },
+            {
+              "id": "comp_1",
+              "type": "sensor",
+              "properties": {
+                "capacity": 9,
+                "priority": "low",
+                "active": true
+              }
+            },
+            {
+              "id": "comp_2",
+              "type": "processor",
+              "properties": {
+                "capacity": 95,
+                "priority": "high",
+                "active": true
+              }
+            },
+            {
+              "id": "comp_3",
+              "type": "network",
+              "properties": {
+                "capacity": 97,
+                "priority": "medium",
+                "active": false
+              }
+            },
+            {
+              "id": "comp_4",
+              "type": "network",
+              "properties": {
+                "capacity": 82,
+                "priority": "medium",
+                "active": false
+              }
+            }
+          ],
+          "relationships": [
+            {
+              "id": "rel_0",
+              "source_id": "comp_3",
+              "target_id": "comp_0",
+              "type": "connects_to",
+              "properties": {
+                "strength": 0.4410225790747463,
+                "bidirectional": true
+              }
+            },
+            {
+              "id": "rel_1",
+              "source_id": "comp_1",
+              "target_id": "comp_3",
+              "type": "connects_to",
+              "properties": {
+                "strength": 0.21128895928230665,
+                "bidirectional": false
+              }
+            },
+            {
+              "id": "rel_2",
+              "source_id": "comp_3",
+              "target_id": "comp_2",
+              "type": "depends_on",
+              "properties": {
+                "strength": 0.6409112056048228,
+                "bidirectional": true
+              }
+            },
+            {
+              "id": "rel_3",
+              "source_id": "comp_4",
+              "target_id": "comp_0",
+              "type": "controls",
+              "properties": {
+                "strength": 0.7481094319994682,
+                "bidirectional": false
+              }
+            },
+            {
+              "id": "rel_4",
+              "source_id": "comp_0",
+              "target_id": "comp_4",
+              "type": "monitors",
+              "properties": {
+                "strength": 0.9467076425532982,
+                "bidirectional": false
+              }
+            },
+            {
+              "id": "rel_5",
+              "source_id": "comp_3",
+              "target_id": "comp_0",
+              "type": "controls",
+              "properties": {
+                "strength": 0.8673204353998588,
+                "bidirectional": false
+              }
+            },
+            {
+              "id": "rel_6",
+              "source_id": "comp_1",
+              "target_id": "comp_4",
+              "type": "depends_on",
+              "properties": {
+                "strength": 0.6237574022428202,
+                "bidirectional": true
+              }
+            },
+            {
+              "id": "rel_7",
+              "source_id": "comp_1",
+              "target_id": "comp_0",
+              "type": "monitors",
+              "properties": {
+                "strength": 0.6682569838161502,
+                "bidirectional": false
+              }
+            },
+            {
+              "id": "rel_8",
+              "source_id": "comp_3",
+              "target_id": "comp_1",
+              "type": "monitors",
+              "properties": {
+                "strength": 0.5548709317650801,
+                "bidirectional": true
+              }
+            },
+            {
+              "id": "rel_9",
+              "source_id": "comp_1",
+              "target_id": "comp_2",
+              "type": "monitors",
+              "properties": {
+                "strength": 0.42367887509040103,
+                "bidirectional": false
+              }
+            }
+          ],
+          "structural_constraints": 0
+        },
+        "variables": {
+          "assignments": {},
+          "domains": {},
+          "dependencies": {}
+        },
+        "metadata": {
+          "generation_strategy": "breadth_first",
+          "iteration": 3,
+          "timestamp": 1769489491.7056885
+        }
+      },
+      {
+        "id": "candidate_4",
+        "structure": {
+          "components": [
+            {
+              "id": "comp_0",
+              "type": "storage",
+              "properties": {
+                "capacity": 63,
+                "priority": "medium",
+                "active": false
+              }
+            },
+            {
+              "id": "comp_1",
+              "type": "sensor",
+              "properties": {
+                "capacity": 81,
+                "priority": "medium",
+                "active": true
+              }
+            }
+          ],
+          "relationships": [
+            {
+              "id": "rel_0",
+              "source_id": "comp_0",
+              "target_id": "comp_1",
+              "type": "controls",
+              "properties": {
+                "strength": 0.49677146922723814,
+                "bidirectional": true
+              }
+            },
+            {
+              "id": "rel_1",
+              "source_id": "comp_1",
+              "target_id": "comp_0",
+              "type": "monitors",
+              "properties": {
+                "strength": 0.42494825729626107,
+                "bidirectional": false
+              }
+            },
+            {
+              "id": "rel_2",
+              "source_id": "comp_1",
+              "target_id": "comp_0",
+              "type": "controls",
+              "properties": {
+                "strength": 0.35251746323918554,
+                "bidirectional": false
+              }
+            }
+          ],
+          "structural_constraints": 0
+        },
+        "variables": {
+          "assignments": {},
+          "domains": {},
+          "dependencies": {}
+        },
+        "metadata": {
+          "generation_strategy": "breadth_first",
+          "iteration": 4,
+          "timestamp": 1769489491.7065184
+        }
+      },
+      {
+        "id": "candidate_5",
+        "structure": {
+          "components": [
+            {
+              "id": "comp_0",
+              "type": "memory",
+              "properties": {
+                "capacity": 91,
+                "priority": "medium",
+                "active": true
+              }
+            }
+          ],
+          "relationships": [],
+          "structural_constraints": 0
+        },
+        "variables": {
+          "assignments": {},
+          "domains": {},
+          "dependencies": {}
+        },
+        "metadata": {
+          "generation_strategy": "breadth_first",
+          "iteration": 5,
+          "timestamp": 1769489491.7075036
+        }
+      },
+      {
+        "id": "candidate_6",
+        "structure": {
+          "components": [
+            {
+              "id": "comp_0",
+              "type": "actuator",
+              "properties": {
+                "capacity": 84,
+                "priority": "high",
+                "active": false
+              }
+            },
+            {
+              "id": "comp_1",
+              "type": "network",
+              "properties": {
+                "capacity": 43,
+                "priority": "high",
+                "active": false
+              }
+            },
+            {
+              "id": "comp_2",
+              "type": "storage",
+              "properties": {
+                "capacity": 55,
+                "priority": "medium",
+                "active": false
+              }
+            }
+          ],
+          "relationships": [
+            {
+              "id": "rel_0",
+              "source_id": "comp_1",
+              "target_id": "comp_2",
+              "type": "connects_to",
+              "properties": {
+                "strength": 0.14305097625354476,
+                "bidirectional": false
+              }
+            },
+            {
+              "id": "rel_1",
+              "source_id": "comp_2",
+              "target_id": "comp_1",
+              "type": "depends_on",
+              "properties": {
+                "strength": 0.13224312125586576,
+                "bidirectional": true
+              }
+            },
+            {
+              "id": "rel_2",
+              "source_id": "comp_2",
+              "target_id": "comp_0",
+              "type": "controls",
+              "properties": {
+                "strength": 0.7491181026883735,
+                "bidirectional": true
+              }
+            },
+            {
+              "id": "rel_3",
+              "source_id": "comp_0",
+              "target_id": "comp_1",
+              "type": "controls",
+              "properties": {
+                "strength": 0.4834401013020674,
+                "bidirectional": true
+              }
+            }
+          ],
+          "structural_constraints": 0
+        },
+        "variables": {
+          "assignments": {},
+          "domains": {},
+          "dependencies": {}
+        },
+        "metadata": {
+          "generation_strategy": "breadth_first",
+          "iteration": 6,
+          "timestamp": 1769489491.7084026
+        }
+      },
+      {
+        "id": "candidate_7",
+        "structure": {
+          "components": [
+            {
+              "id": "comp_0",
+              "type": "processor",
+              "properties": {
+                "capacity": 98,
+                "priority": "high",
+                "active": true
+              }
+            },
+            {
+              "id": "comp_1",
+              "type": "sensor",
+              "properties": {
+                "capacity": 4,
+                "priority": "medium",
+                "active": false
+              }
+            },
+            {
+              "id": "comp_2",
+              "type": "sensor",
+              "properties": {
+                "capacity": 17,
+                "priority": "medium",
+                "active": false
+              }
+            },
+            {
+              "id": "comp_3",
+              "type": "sensor",
+              "properties": {
+                "capacity": 19,
+                "priority": "medium",
+                "active": false
+              }
+            },
+            {
+              "id": "comp_4",
+              "type": "storage",
+              "properties": {
+                "capacity": 29,
+                "priority": "low",
+                "active": false
+              }
+            }
+          ],
+          "relationships": [
+            {
+              "id": "rel_0",
+              "source_id": "comp_0",
+              "target_id": "comp_4",
+              "type": "connects_to",
+              "properties": {
+                "strength": 0.8954656168346535,
+                "bidirectional": true
+              }
+            }
+          ],
+          "structural_constraints": 0
+        },
+        "variables": {
+          "assignments": {},
+          "domains": {},
+          "dependencies": {}
+        },
+        "metadata": {
+          "generation_strategy": "breadth_first",
+          "iteration": 7,
+          "timestamp": 1769489491.7104042
+        }
+      },
+      {
+        "id": "candidate_8",
+        "structure": {
+          "components": [
+            {
+              "id": "comp_0",
+              "type": "sensor",
+              "properties": {
+                "capacity": 27,
+                "priority": "medium",
+                "active": false
+              }
+            },
+            {
+              "id": "comp_1",
+              "type": "storage",
+              "properties": {
+                "capacity": 66,
+                "priority": "high",
+                "active": false
+              }
+            },
+            {
+              "id": "comp_2",
+              "type": "network",
+              "properties": {
+                "capacity": 12,
+                "priority": "medium",
+                "active": true
+              }
+            },
+            {
+              "id": "comp_3",
+              "type": "storage",
+              "properties": {
+                "capacity": 89,
+                "priority": "medium",
+                "active": false
+              }
+            }
+          ],
+          "relationships": [
+            {
+              "id": "rel_0",
+              "source_id": "comp_3",
+              "target_id": "comp_0",
+              "type": "depends_on",
+              "properties": {
+                "strength": 0.11817974014358251,
+                "bidirectional": true
+              }
+            },
+            {
+              "id": "rel_1",
+              "source_id": "comp_1",
+              "target_id": "comp_2",
+              "type": "depends_on",
+              "properties": {
+                "strength": 0.8254042457732633,
+                "bidirectional": true
+              }
+            },
+            {
+              "id": "rel_2",
+              "source_id": "comp_1",
+              "target_id": "comp_2",
+              "type": "depends_on",
+              "properties": {
+                "strength": 0.8968706145678906,
+                "bidirectional": true
+              }
+            }
+          ],
+          "structural_constraints": 0
+        },
+        "variables": {
+          "assignments": {},
+          "domains": {},
+          "dependencies": {}
+        },
+        "metadata": {
+          "generation_strategy": "breadth_first",
+          "iteration": 8,
+          "timestamp": 1769489491.7114525
+        }
+      }
+    ]
+  },
+  "depth_first": {
+    "strategy": "depth_first",
+    "solutions_found": 8,
+    "iterations_completed": 1,
+    "total_time": 0.0066869258880615234,
+    "success_rate": 1.0,
+    "iterations_per_second": 175.80872011251756,
+    "solutions_per_second": 175.80872011251756,
+    "average_evaluation_time": 0.0010905265808105469,
+    "statistics": {
+      "total_solutions": 8,
+      "average_components": 3.625,
+      "average_relationships": 2.0,
+      "average_variables": 0.0,
+      "component_range": [
+        2,
+        6
+      ],
+      "relationship_range": [
+        2,
+        2
+      ],
+      "variable_range": [
+        0,
+        0
+      ]
+    },
+    "solutions": [
+      {
+        "id": "candidate_1",
+        "structure": {
+          "components": [
+            {
+              "id": "comp_0",
+              "type": "network",
+              "properties": {
+                "capacity": 17,
+                "priority": "medium",
+                "active": true
+              }
+            },
+            {
+              "id": "comp_1",
+              "type": "network",
+              "properties": {
+                "capacity": 38,
+                "priority": "high",
+                "active": false
+              }
+            }
+          ],
+          "relationships": [
+            {
+              "id": "rel_0",
+              "source_id": "comp_1",
+              "target_id": "comp_0",
+              "type": "controls",
+              "properties": {
+                "strength": 0.8441445855922509,
+                "bidirectional": true
+              }
+            },
+            {
+              "id": "rel_1",
+              "source_id": "comp_0",
+              "target_id": "comp_1",
+              "type": "depends_on",
+              "properties": {
+                "strength": 0.8390221105549518,
+                "bidirectional": false
+              }
+            }
+          ],
+          "structural_constraints": 0
+        },
+        "variables": {
+          "assignments": {},
+          "domains": {},
+          "dependencies": {}
+        },
+        "metadata": {
+          "generation_strategy": "depth_first",
+          "iteration": 1,
+          "timestamp": 1769489491.7170575
+        }
+      },
+      {
+        "id": "candidate_1_1718",
+        "structure": {
+          "components": [
+            {
+              "id": "comp_0",
+              "type": "network",
+              "properties": {
+                "capacity": 17,
+                "priority": "medium",
+                "active": true
+              }
+            },
+            {
+              "id": "comp_1",
+              "type": "network",
+              "properties": {
+                "capacity": 38,
+                "priority": "high",
+                "active": false
+              }
+            }
+          ],
+          "relationships": [
+            {
+              "id": "rel_0",
+              "source_id": "comp_1",
+              "target_id": "comp_0",
+              "type": "controls",
+              "properties": {
+                "strength": 0.8441445855922509,
+                "bidirectional": true
+              }
+            },
+            {
+              "id": "rel_1",
+              "source_id": "comp_0",
+              "target_id": "comp_1",
+              "type": "depends_on",
+              "properties": {
+                "strength": 0.8390221105549518,
+                "bidirectional": false
+              }
+            }
+          ],
+          "structural_constraints": 0
+        },
+        "variables": {
+          "assignments": {},
+          "domains": {},
+          "dependencies": {}
+        },
+        "metadata": {
+          "generation_strategy": "depth_first",
+          "iteration": 1,
+          "timestamp": 1769489491.7180905
+        }
+      },
+      {
+        "id": "candidate_1_1718",
+        "structure": {
+          "components": [
+            {
+              "id": "comp_0",
+              "type": "network",
+              "properties": {
+                "capacity": 17,
+                "priority": "medium",
+                "active": true
+              }
+            },
+            {
+              "id": "comp_1",
+              "type": "network",
+              "properties": {
+                "capacity": 38,
+                "priority": "high",
+                "active": false
+              }
+            },
+            {
+              "id": "variant_comp_2",
+              "type": "storage",
+              "properties": {
+                "capacity": 4,
+                "priority": "medium",
+                "active": false
+              }
+            }
+          ],
+          "relationships": [
+            {
+              "id": "rel_0",
+              "source_id": "comp_1",
+              "target_id": "comp_0",
+              "type": "controls",
+              "properties": {
+                "strength": 0.8441445855922509,
+                "bidirectional": true
+              }
+            },
+            {
+              "id": "rel_1",
+              "source_id": "comp_0",
+              "target_id": "comp_1",
+              "type": "depends_on",
+              "properties": {
+                "strength": 0.8390221105549518,
+                "bidirectional": false
+              }
+            }
+          ],
+          "structural_constraints": 0
+        },
+        "variables": {
+          "assignments": {},
+          "domains": {},
+          "dependencies": {}
+        },
+        "metadata": {
+          "generation_strategy": "depth_first",
+          "iteration": 1,
+          "timestamp": 1769489491.7180905
+        }
+      },
+      {
+        "id": "candidate_1_1719",
+        "structure": {
+          "components": [
+            {
+              "id": "comp_0",
+              "type": "network",
+              "properties": {
+                "capacity": 17,
+                "priority": "medium",
+                "active": true
+              }
+            },
+            {
+              "id": "comp_1",
+              "type": "network",
+              "properties": {
+                "capacity": 38,
+                "priority": "high",
+                "active": false
+              }
+            },
+            {
+              "id": "variant_comp_2",
+              "type": "storage",
+              "properties": {
+                "capacity": 4,
+                "priority": "medium",
+                "active": false
+              }
+            },
+            {
+              "id": "variant_comp_3",
+              "type": "memory",
+              "properties": {
+                "capacity": 14,
+                "priority": "medium",
+                "active": false
+              }
+            }
+          ],
+          "relationships": [
+            {
+              "id": "rel_0",
+              "source_id": "comp_1",
+              "target_id": "comp_0",
+              "type": "controls",
+              "properties": {
+                "strength": 0.8441445855922509,
+                "bidirectional": true
+              }
+            },
+            {
+              "id": "rel_1",
+              "source_id": "comp_0",
+              "target_id": "comp_1",
+              "type": "depends_on",
+              "properties": {
+                "strength": 0.8390221105549518,
+                "bidirectional": false
+              }
+            }
+          ],
+          "structural_constraints": 0
+        },
+        "variables": {
+          "assignments": {},
+          "domains": {},
+          "dependencies": {}
+        },
+        "metadata": {
+          "generation_strategy": "depth_first",
+          "iteration": 1,
+          "timestamp": 1769489491.7190862
+        }
+      },
+      {
+        "id": "candidate_1_1719",
+        "structure": {
+          "components": [
+            {
+              "id": "comp_0",
+              "type": "network",
+              "properties": {
+                "capacity": 17,
+                "priority": "medium",
+                "active": true
+              }
+            },
+            {
+              "id": "comp_1",
+              "type": "network",
+              "properties": {
+                "capacity": 38,
+                "priority": "high",
+                "active": false
+              }
+            },
+            {
+              "id": "variant_comp_2",
+              "type": "storage",
+              "properties": {
+                "capacity": 4,
+                "priority": "medium",
+                "active": false
+              }
+            },
+            {
+              "id": "variant_comp_3",
+              "type": "memory",
+              "properties": {
+                "capacity": 14,
+                "priority": "medium",
+                "active": false
+              }
+            },
+            {
+              "id": "variant_comp_4",
+              "type": "network",
+              "properties": {
+                "capacity": 70,
+                "priority": "high",
+                "active": true
+              }
+            }
+          ],
+          "relationships": [
+            {
+              "id": "rel_0",
+              "source_id": "comp_1",
+              "target_id": "comp_0",
+              "type": "controls",
+              "properties": {
+                "strength": 0.8441445855922509,
+                "bidirectional": true
+              }
+            },
+            {
+              "id": "rel_1",
+              "source_id": "comp_0",
+              "target_id": "comp_1",
+              "type": "depends_on",
+              "properties": {
+                "strength": 0.8390221105549518,
+                "bidirectional": false
+              }
+            }
+          ],
+          "structural_constraints": 0
+        },
+        "variables": {
+          "assignments": {},
+          "domains": {},
+          "dependencies": {}
+        },
+        "metadata": {
+          "generation_strategy": "depth_first",
+          "iteration": 1,
+          "timestamp": 1769489491.7190862
+        }
+      },
+      {
+        "id": "candidate_1_1719",
+        "structure": {
+          "components": [
+            {
+              "id": "comp_0",
+              "type": "network",
+              "properties": {
+                "capacity": 17,
+                "priority": "medium",
+                "active": true
+              }
+            },
+            {
+              "id": "comp_1",
+              "type": "network",
+              "properties": {
+                "capacity": 38,
+                "priority": "high",
+                "active": false
+              }
+            },
+            {
+              "id": "variant_comp_2",
+              "type": "storage",
+              "properties": {
+                "capacity": 4,
+                "priority": "medium",
+                "active": false
+              }
+            },
+            {
+              "id": "variant_comp_3",
+              "type": "memory",
+              "properties": {
+                "capacity": 14,
+                "priority": "medium",
+                "active": false
+              }
+            },
+            {
+              "id": "variant_comp_4",
+              "type": "network",
+              "properties": {
+                "capacity": 70,
+                "priority": "high",
+                "active": true
+              }
+            },
+            {
+              "id": "variant_comp_5",
+              "type": "processor",
+              "properties": {
+                "capacity": 75,
+                "priority": "high",
+                "active": true
+              }
+            }
+          ],
+          "relationships": [
+            {
+              "id": "rel_0",
+              "source_id": "comp_1",
+              "target_id": "comp_0",
+              "type": "controls",
+              "properties": {
+                "strength": 0.8441445855922509,
+                "bidirectional": true
+              }
+            },
+            {
+              "id": "rel_1",
+              "source_id": "comp_0",
+              "target_id": "comp_1",
+              "type": "depends_on",
+              "properties": {
+                "strength": 0.8390221105549518,
+                "bidirectional": false
+              }
+            }
+          ],
+          "structural_constraints": 0
+        },
+        "variables": {
+          "assignments": {},
+          "domains": {},
+          "dependencies": {}
+        },
+        "metadata": {
+          "generation_strategy": "depth_first",
+          "iteration": 1,
+          "timestamp": 1769489491.7190862
+        }
+      },
+      {
+        "id": "candidate_1_1720",
+        "structure": {
+          "components": [
+            {
+              "id": "comp_0",
+              "type": "network",
+              "properties": {
+                "capacity": 17,
+                "priority": "medium",
+                "active": true
+              }
+            },
+            {
+              "id": "comp_1",
+              "type": "network",
+              "properties": {
+                "capacity": 38,
+                "priority": "high",
+                "active": false
+              }
+            },
+            {
+              "id": "variant_comp_3",
+              "type": "memory",
+              "properties": {
+                "capacity": 14,
+                "priority": "medium",
+                "active": false
+              }
+            },
+            {
+              "id": "variant_comp_4",
+              "type": "network",
+              "properties": {
+                "capacity": 70,
+                "priority": "high",
+                "active": true
+              }
+            }
+          ],
+          "relationships": [
+            {
+              "id": "rel_0",
+              "source_id": "comp_1",
+              "target_id": "comp_0",
+              "type": "controls",
+              "properties": {
+                "strength": 0.8441445855922509,
+                "bidirectional": true
+              }
+            },
+            {
+              "id": "rel_1",
+              "source_id": "comp_0",
+              "target_id": "comp_1",
+              "type": "depends_on",
+              "properties": {
+                "strength": 0.8390221105549518,
+                "bidirectional": false
+              }
+            }
+          ],
+          "structural_constraints": 0
+        },
+        "variables": {
+          "assignments": {},
+          "domains": {},
+          "dependencies": {}
+        },
+        "metadata": {
+          "generation_strategy": "depth_first",
+          "iteration": 1,
+          "timestamp": 1769489491.7200897
+        }
+      },
+      {
+        "id": "candidate_1_1720",
+        "structure": {
+          "components": [
+            {
+              "id": "comp_0",
+              "type": "network",
+              "properties": {
+                "capacity": 17,
+                "priority": "medium",
+                "active": true
+              }
+            },
+            {
+              "id": "comp_1",
+              "type": "network",
+              "properties": {
+                "capacity": 38,
+                "priority": "high",
+                "active": false
+              }
+            },
+            {
+              "id": "variant_comp_3",
+              "type": "memory",
+              "properties": {
+                "capacity": 14,
+                "priority": "medium",
+                "active": false
+              }
+            }
+          ],
+          "relationships": [
+            {
+              "id": "rel_0",
+              "source_id": "comp_1",
+              "target_id": "comp_0",
+              "type": "controls",
+              "properties": {
+                "strength": 0.8441445855922509,
+                "bidirectional": true
+              }
+            },
+            {
+              "id": "rel_1",
+              "source_id": "comp_0",
+              "target_id": "comp_1",
+              "type": "depends_on",
+              "properties": {
+                "strength": 0.8390221105549518,
+                "bidirectional": false
+              }
+            }
+          ],
+          "structural_constraints": 0
+        },
+        "variables": {
+          "assignments": {},
+          "domains": {},
+          "dependencies": {}
+        },
+        "metadata": {
+          "generation_strategy": "depth_first",
+          "iteration": 1,
+          "timestamp": 1769489491.7200897
+        }
+      }
+    ]
+  },
+  "best_first": {
+    "strategy": "best_first",
+    "solutions_found": 8,
+    "iterations_completed": 5,
+    "total_time": 0.005994558334350586,
+    "success_rate": 1.0,
+    "iterations_per_second": 1001.001001001001,
+    "solutions_per_second": 1001.001001001001,
+    "average_evaluation_time": 0.0003990650177001953,
+    "statistics": {
+      "total_solutions": 8,
+      "average_components": 1.75,
+      "average_relationships": 1.5,
+      "average_variables": 0.0,
+      "component_range": [
+        1,
+        3
+      ],
+      "relationship_range": [
+        0,
+        5
+      ],
+      "variable_range": [
+        0,
+        0
+      ]
+    },
+    "solutions": [
+      {
+        "id": "candidate_1",
+        "structure": {
+          "components": [
+            {
+              "id": "comp_0",
+              "type": "storage",
+              "properties": {
+                "capacity": 98,
+                "priority": "medium",
+                "active": true
+              }
+            }
+          ],
+          "relationships": [],
+          "structural_constraints": 0
+        },
+        "variables": {
+          "assignments": {},
+          "domains": {},
+          "dependencies": {}
+        },
+        "metadata": {
+          "generation_strategy": "best_first",
+          "iteration": 1,
+          "timestamp": 1769489491.7239885
+        }
+      },
+      {
+        "id": "candidate_2",
+        "structure": {
+          "components": [
+            {
+              "id": "comp_0",
+              "type": "actuator",
+              "properties": {
+                "capacity": 64,
+                "priority": "medium",
+                "active": false
+              }
+            },
+            {
+              "id": "comp_1",
+              "type": "network",
+              "properties": {
+                "capacity": 14,
+                "priority": "high",
+                "active": true
+              }
+            },
+            {
+              "id": "comp_2",
+              "type": "actuator",
+              "properties": {
+                "capacity": 16,
+                "priority": "high",
+                "active": false
+              }
+            }
+          ],
+          "relationships": [
+            {
+              "id": "rel_0",
+              "source_id": "comp_1",
+              "target_id": "comp_2",
+              "type": "controls",
+              "properties": {
+                "strength": 0.684887130456862,
+                "bidirectional": true
+              }
+            },
+            {
+              "id": "rel_1",
+              "source_id": "comp_0",
+              "target_id": "comp_2",
+              "type": "monitors",
+              "properties": {
+                "strength": 0.7301634659932097,
+                "bidirectional": true
+              }
+            },
+            {
+              "id": "rel_2",
+              "source_id": "comp_2",
+              "target_id": "comp_0",
+              "type": "controls",
+              "properties": {
+                "strength": 0.710245220361044,
+                "bidirectional": false
+              }
+            },
+            {
+              "id": "rel_3",
+              "source_id": "comp_1",
+              "target_id": "comp_0",
+              "type": "monitors",
+              "properties": {
+                "strength": 0.8036978968958042,
+                "bidirectional": true
+              }
+            },
+            {
+              "id": "rel_4",
+              "source_id": "comp_2",
+              "target_id": "comp_1",
+              "type": "monitors",
+              "properties": {
+                "strength": 0.9608148424969706,
+                "bidirectional": false
+              }
+            }
+          ],
+          "structural_constraints": 0
+        },
+        "variables": {
+          "assignments": {},
+          "domains": {},
+          "dependencies": {}
+        },
+        "metadata": {
+          "generation_strategy": "best_first",
+          "iteration": 2,
+          "timestamp": 1769489491.7249768
+        }
+      },
+      {
+        "id": "candidate_3",
+        "structure": {
+          "components": [
+            {
+              "id": "comp_0",
+              "type": "actuator",
+              "properties": {
+                "capacity": 97,
+                "priority": "high",
+                "active": true
+              }
+            }
+          ],
+          "relationships": [],
+          "structural_constraints": 0
+        },
+        "variables": {
+          "assignments": {},
+          "domains": {},
+          "dependencies": {}
+        },
+        "metadata": {
+          "generation_strategy": "best_first",
+          "iteration": 3,
+          "timestamp": 1769489491.7259758
+        }
+      },
+      {
+        "id": "candidate_4",
+        "structure": {
+          "components": [
+            {
+              "id": "comp_0",
+              "type": "network",
+              "properties": {
+                "capacity": 78,
+                "priority": "low",
+                "active": false
+              }
+            }
+          ],
+          "relationships": [],
+          "structural_constraints": 0
+        },
+        "variables": {
+          "assignments": {},
+          "domains": {},
+          "dependencies": {}
+        },
+        "metadata": {
+          "generation_strategy": "best_first",
+          "iteration": 4,
+          "timestamp": 1769489491.7269773
+        }
+      },
+      {
+        "id": "candidate_5",
+        "structure": {
+          "components": [
+            {
+              "id": "comp_0",
+              "type": "processor",
+              "properties": {
+                "capacity": 3,
+                "priority": "low",
+                "active": false
+              }
+            },
+            {
+              "id": "comp_1",
+              "type": "network",
+              "properties": {
+                "capacity": 50,
+                "priority": "low",
+                "active": false
+              }
+            }
+          ],
+          "relationships": [
+            {
+              "id": "rel_0",
+              "source_id": "comp_0",
+              "target_id": "comp_1",
+              "type": "controls",
+              "properties": {
+                "strength": 0.491818142763089,
+                "bidirectional": true
+              }
+            },
+            {
+              "id": "rel_1",
+              "source_id": "comp_0",
+              "target_id": "comp_1",
+              "type": "monitors",
+              "properties": {
+                "strength": 0.19711557660332973,
+                "bidirectional": false
+              }
+            }
+          ],
+          "structural_constraints": 0
+        },
+        "variables": {
+          "assignments": {},
+          "domains": {},
+          "dependencies": {}
+        },
+        "metadata": {
+          "generation_strategy": "best_first",
+          "iteration": 5,
+          "timestamp": 1769489491.7279768
+        }
+      },
+      {
+        "id": "candidate_5_1727",
+        "structure": {
+          "components": [
+            {
+              "id": "comp_0",
+              "type": "processor",
+              "properties": {
+                "capacity": 3,
+                "priority": "low",
+                "active": false
+              }
+            },
+            {
+              "id": "comp_1",
+              "type": "network",
+              "properties": {
+                "capacity": 50,
+                "priority": "low",
+                "active": false
+              }
+            },
+            {
+              "id": "variant_comp_2",
+              "type": "memory",
+              "properties": {
+                "capacity": 4,
+                "priority": "medium",
+                "active": false
+              }
+            }
+          ],
+          "relationships": [
+            {
+              "id": "rel_0",
+              "source_id": "comp_0",
+              "target_id": "comp_1",
+              "type": "controls",
+              "properties": {
+                "strength": 0.491818142763089,
+                "bidirectional": true
+              }
+            },
+            {
+              "id": "rel_1",
+              "source_id": "comp_0",
+              "target_id": "comp_1",
+              "type": "monitors",
+              "properties": {
+                "strength": 0.19711557660332973,
+                "bidirectional": false
+              }
+            }
+          ],
+          "structural_constraints": 0
+        },
+        "variables": {
+          "assignments": {},
+          "domains": {},
+          "dependencies": {}
+        },
+        "metadata": {
+          "generation_strategy": "best_first",
+          "iteration": 5,
+          "timestamp": 1769489491.7279768
+        }
+      },
+      {
+        "id": "candidate_6_1727",
+        "structure": {
+          "components": [
+            {
+              "id": "comp_0",
+              "type": "processor",
+              "properties": {
+                "capacity": 3,
+                "priority": "low",
+                "active": false
+              }
+            }
+          ],
+          "relationships": [],
+          "structural_constraints": 0
+        },
+        "variables": {
+          "assignments": {},
+          "domains": {},
+          "dependencies": {}
+        },
+        "metadata": {
+          "generation_strategy": "best_first",
+          "iteration": 6,
+          "timestamp": 1769489491.7279768
+        }
+      },
+      {
+        "id": "candidate_7_1727",
+        "structure": {
+          "components": [
+            {
+              "id": "comp_0",
+              "type": "processor",
+              "properties": {
+                "capacity": 3,
+                "priority": "low",
+                "active": false
+              }
+            },
+            {
+              "id": "comp_1",
+              "type": "network",
+              "properties": {
+                "capacity": 50,
+                "priority": "low",
+                "active": false
+              }
+            }
+          ],
+          "relationships": [
+            {
+              "id": "rel_0",
+              "source_id": "comp_0",
+              "target_id": "comp_1",
+              "type": "controls",
+              "properties": {
+                "strength": 0.491818142763089,
+                "bidirectional": true
+              }
+            },
+            {
+              "id": "rel_1",
+              "source_id": "comp_0",
+              "target_id": "comp_1",
+              "type": "monitors",
+              "properties": {
+                "strength": 0.19711557660332973,
+                "bidirectional": false
+              }
+            },
+            {
+              "id": "variant_rel_2",
+              "source_id": "comp_1",
+              "target_id": "comp_0",
+              "type": "controls",
+              "properties": {
+                "strength": 0.5739279531912869,
+                "bidirectional": true
+              }
+            }
+          ],
+          "structural_constraints": 0
+        },
+        "variables": {
+          "assignments": {},
+          "domains": {},
+          "dependencies": {}
+        },
+        "metadata": {
+          "generation_strategy": "best_first",
+          "iteration": 7,
+          "timestamp": 1769489491.7279768
+        }
+      }
+    ]
+  },
+  "random": {
+    "strategy": "random",
+    "solutions_found": 8,
+    "iterations_completed": 8,
+    "total_time": 0.007971525192260742,
+    "success_rate": 1.0,
+    "iterations_per_second": 1147.4469305794607,
+    "solutions_per_second": 1147.4469305794607,
+    "average_evaluation_time": 0.0002487599849700928,
+    "statistics": {
+      "total_solutions": 8,
+      "average_components": 3.5,
+      "average_relationships": 4.25,
+      "average_variables": 0.0,
+      "component_range": [
+        3,
+        5
+      ],
+      "relationship_range": [
+        2,
+        6
+      ],
+      "variable_range": [
+        0,
+        0
+      ]
+    },
+    "solutions": [
+      {
+        "id": "candidate_1",
+        "structure": {
+          "components": [
+            {
+              "id": "comp_0",
+              "type": "storage",
+              "properties": {
+                "capacity": 100,
+                "priority": "high",
+                "active": false
+              }
+            },
+            {
+              "id": "comp_1",
+              "type": "network",
+              "properties": {
+                "capacity": 49,
+                "priority": "medium",
+                "active": true
+              }
+            },
+            {
+              "id": "comp_2",
+              "type": "actuator",
+              "properties": {
+                "capacity": 27,
+                "priority": "low",
+                "active": false
+              }
+            },
+            {
+              "id": "comp_3",
+              "type": "storage",
+              "properties": {
+                "capacity": 45,
+                "priority": "medium",
+                "active": false
+              }
+            }
+          ],
+          "relationships": [
+            {
+              "id": "rel_0",
+              "source_id": "comp_2",
+              "target_id": "comp_0",
+              "type": "controls",
+              "properties": {
+                "strength": 0.5123163483742974,
+                "bidirectional": true
+              }
+            },
+            {
+              "id": "rel_1",
+              "source_id": "comp_1",
+              "target_id": "comp_3",
+              "type": "monitors",
+              "properties": {
+                "strength": 0.6719718443696476,
+                "bidirectional": true
+              }
+            }
+          ],
+          "structural_constraints": 0
+        },
+        "variables": {
+          "assignments": {},
+          "domains": {},
+          "dependencies": {}
+        },
+        "metadata": {
+          "generation_strategy": "random",
+          "iteration": 1,
+          "timestamp": 1769489491.7309875
+        }
+      },
+      {
+        "id": "candidate_2",
+        "structure": {
+          "components": [
+            {
+              "id": "comp_0",
+              "type": "memory",
+              "properties": {
+                "capacity": 91,
+                "priority": "high",
+                "active": false
+              }
+            },
+            {
+              "id": "comp_1",
+              "type": "actuator",
+              "properties": {
+                "capacity": 47,
+                "priority": "high",
+                "active": true
+              }
+            },
+            {
+              "id": "comp_2",
+              "type": "network",
+              "properties": {
+                "capacity": 16,
+                "priority": "high",
+                "active": false
+              }
+            }
+          ],
+          "relationships": [
+            {
+              "id": "rel_0",
+              "source_id": "comp_0",
+              "target_id": "comp_1",
+              "type": "connects_to",
+              "properties": {
+                "strength": 0.4376608465532472,
+                "bidirectional": true
+              }
+            },
+            {
+              "id": "rel_1",
+              "source_id": "comp_2",
+              "target_id": "comp_0",
+              "type": "connects_to",
+              "properties": {
+                "strength": 0.13247976574005801,
+                "bidirectional": false
+              }
+            },
+            {
+              "id": "rel_2",
+              "source_id": "comp_2",
+              "target_id": "comp_0",
+              "type": "controls",
+              "properties": {
+                "strength": 0.33899479410755085,
+                "bidirectional": false
+              }
+            },
+            {
+              "id": "rel_3",
+              "source_id": "comp_1",
+              "target_id": "comp_2",
+              "type": "depends_on",
+              "properties": {
+                "strength": 0.7290111306769368,
+                "bidirectional": true
+              }
+            },
+            {
+              "id": "rel_4",
+              "source_id": "comp_0",
+              "target_id": "comp_1",
+              "type": "depends_on",
+              "properties": {
+                "strength": 0.23893149980057232,
+                "bidirectional": false
+              }
+            },
+            {
+              "id": "rel_5",
+              "source_id": "comp_0",
+              "target_id": "comp_1",
+              "type": "depends_on",
+              "properties": {
+                "strength": 0.26309324573997717,
+                "bidirectional": false
+              }
+            }
+          ],
+          "structural_constraints": 0
+        },
+        "variables": {
+          "assignments": {},
+          "domains": {},
+          "dependencies": {}
+        },
+        "metadata": {
+          "generation_strategy": "random",
+          "iteration": 2,
+          "timestamp": 1769489491.7319996
+        }
+      },
+      {
+        "id": "candidate_3",
+        "structure": {
+          "components": [
+            {
+              "id": "comp_0",
+              "type": "processor",
+              "properties": {
+                "capacity": 82,
+                "priority": "medium",
+                "active": false
+              }
+            },
+            {
+              "id": "comp_1",
+              "type": "storage",
+              "properties": {
+                "capacity": 84,
+                "priority": "high",
+                "active": false
+              }
+            },
+            {
+              "id": "comp_2",
+              "type": "sensor",
+              "properties": {
+                "capacity": 17,
+                "priority": "high",
+                "active": false
+              }
+            },
+            {
+              "id": "comp_3",
+              "type": "sensor",
+              "properties": {
+                "capacity": 93,
+                "priority": "medium",
+                "active": false
+              }
+            },
+            {
+              "id": "comp_4",
+              "type": "processor",
+              "properties": {
+                "capacity": 77,
+                "priority": "high",
+                "active": false
+              }
+            }
+          ],
+          "relationships": [
+            {
+              "id": "rel_0",
+              "source_id": "comp_2",
+              "target_id": "comp_4",
+              "type": "controls",
+              "properties": {
+                "strength": 0.7717063112877834,
+                "bidirectional": true
+              }
+            },
+            {
+              "id": "rel_1",
+              "source_id": "comp_0",
+              "target_id": "comp_3",
+              "type": "monitors",
+              "properties": {
+                "strength": 0.37250544702170185,
+                "bidirectional": false
+              }
+            },
+            {
+              "id": "rel_2",
+              "source_id": "comp_0",
+              "target_id": "comp_1",
+              "type": "monitors",
+              "properties": {
+                "strength": 0.8365140590614496,
+                "bidirectional": true
+              }
+            },
+            {
+              "id": "rel_3",
+              "source_id": "comp_0",
+              "target_id": "comp_3",
+              "type": "depends_on",
+              "properties": {
+                "strength": 0.8940284064699078,
+                "bidirectional": true
+              }
+            }
+          ],
+          "structural_constraints": 0
+        },
+        "variables": {
+          "assignments": {},
+          "domains": {},
+          "dependencies": {}
+        },
+        "metadata": {
+          "generation_strategy": "random",
+          "iteration": 3,
+          "timestamp": 1769489491.7329934
+        }
+      },
+      {
+        "id": "candidate_4",
+        "structure": {
+          "components": [
+            {
+              "id": "comp_0",
+              "type": "network",
+              "properties": {
+                "capacity": 58,
+                "priority": "medium",
+                "active": true
+              }
+            },
+            {
+              "id": "comp_1",
+              "type": "actuator",
+              "properties": {
+                "capacity": 63,
+                "priority": "low",
+                "active": true
+              }
+            },
+            {
+              "id": "comp_2",
+              "type": "sensor",
+              "properties": {
+                "capacity": 7,
+                "priority": "medium",
+                "active": true
+              }
+            }
+          ],
+          "relationships": [
+            {
+              "id": "rel_0",
+              "source_id": "comp_0",
+              "target_id": "comp_2",
+              "type": "depends_on",
+              "properties": {
+                "strength": 0.7027399992129052,
+                "bidirectional": true
+              }
+            },
+            {
+              "id": "rel_1",
+              "source_id": "comp_2",
+              "target_id": "comp_0",
+              "type": "monitors",
+              "properties": {
+                "strength": 0.16979339679737587,
+                "bidirectional": false
+              }
+            },
+            {
+              "id": "rel_2",
+              "source_id": "comp_0",
+              "target_id": "comp_2",
+              "type": "connects_to",
+              "properties": {
+                "strength": 0.7580149187146631,
+                "bidirectional": false
+              }
+            },
+            {
+              "id": "rel_3",
+              "source_id": "comp_2",
+              "target_id": "comp_1",
+              "type": "controls",
+              "properties": {
+                "strength": 0.26229906321828844,
+                "bidirectional": false
+              }
+            },
+            {
+              "id": "rel_4",
+              "source_id": "comp_2",
+              "target_id": "comp_0",
+              "type": "depends_on",
+              "properties": {
+                "strength": 0.13872193118934192,
+                "bidirectional": false
+              }
+            },
+            {
+              "id": "rel_5",
+              "source_id": "comp_1",
+              "target_id": "comp_0",
+              "type": "depends_on",
+              "properties": {
+                "strength": 0.29496298630212275,
+                "bidirectional": true
+              }
+            }
+          ],
+          "structural_constraints": 0
+        },
+        "variables": {
+          "assignments": {},
+          "domains": {},
+          "dependencies": {}
+        },
+        "metadata": {
+          "generation_strategy": "random",
+          "iteration": 4,
+          "timestamp": 1769489491.7339897
+        }
+      },
+      {
+        "id": "candidate_5",
+        "structure": {
+          "components": [
+            {
+              "id": "comp_0",
+              "type": "network",
+              "properties": {
+                "capacity": 5,
+                "priority": "low",
+                "active": false
+              }
+            },
+            {
+              "id": "comp_1",
+              "type": "actuator",
+              "properties": {
+                "capacity": 79,
+                "priority": "medium",
+                "active": true
+              }
+            },
+            {
+              "id": "comp_2",
+              "type": "actuator",
+              "properties": {
+                "capacity": 54,
+                "priority": "low",
+                "active": true
+              }
+            }
+          ],
+          "relationships": [
+            {
+              "id": "rel_0",
+              "source_id": "comp_0",
+              "target_id": "comp_2",
+              "type": "connects_to",
+              "properties": {
+                "strength": 0.11107140143571047,
+                "bidirectional": true
+              }
+            },
+            {
+              "id": "rel_1",
+              "source_id": "comp_2",
+              "target_id": "comp_1",
+              "type": "controls",
+              "properties": {
+                "strength": 0.28232290619304057,
+                "bidirectional": false
+              }
+            },
+            {
+              "id": "rel_2",
+              "source_id": "comp_2",
+              "target_id": "comp_1",
+              "type": "depends_on",
+              "properties": {
+                "strength": 0.41744206253327265,
+                "bidirectional": true
+              }
+            }
+          ],
+          "structural_constraints": 0
+        },
+        "variables": {
+          "assignments": {},
+          "domains": {},
+          "dependencies": {}
+        },
+        "metadata": {
+          "generation_strategy": "random",
+          "iteration": 5,
+          "timestamp": 1769489491.7349906
+        }
+      },
+      {
+        "id": "candidate_6",
+        "structure": {
+          "components": [
+            {
+              "id": "comp_0",
+              "type": "network",
+              "properties": {
+                "capacity": 2,
+                "priority": "high",
+                "active": true
+              }
+            },
+            {
+              "id": "comp_1",
+              "type": "memory",
+              "properties": {
+                "capacity": 17,
+                "priority": "low",
+                "active": false
+              }
+            },
+            {
+              "id": "comp_2",
+              "type": "network",
+              "properties": {
+                "capacity": 83,
+                "priority": "low",
+                "active": true
+              }
+            }
+          ],
+          "relationships": [
+            {
+              "id": "rel_0",
+              "source_id": "comp_0",
+              "target_id": "comp_1",
+              "type": "depends_on",
+              "properties": {
+                "strength": 0.5212136793166096,
+                "bidirectional": true
+              }
+            },
+            {
+              "id": "rel_1",
+              "source_id": "comp_1",
+              "target_id": "comp_0",
+              "type": "connects_to",
+              "properties": {
+                "strength": 0.20241340311217693,
+                "bidirectional": false
+              }
+            }
+          ],
+          "structural_constraints": 0
+        },
+        "variables": {
+          "assignments": {},
+          "domains": {},
+          "dependencies": {}
+        },
+        "metadata": {
+          "generation_strategy": "random",
+          "iteration": 6,
+          "timestamp": 1769489491.7359955
+        }
+      },
+      {
+        "id": "candidate_7",
+        "structure": {
+          "components": [
+            {
+              "id": "comp_0",
+              "type": "actuator",
+              "properties": {
+                "capacity": 59,
+                "priority": "medium",
+                "active": false
+              }
+            },
+            {
+              "id": "comp_1",
+              "type": "network",
+              "properties": {
+                "capacity": 21,
+                "priority": "high",
+                "active": true
+              }
+            },
+            {
+              "id": "comp_2",
+              "type": "actuator",
+              "properties": {
+                "capacity": 25,
+                "priority": "high",
+                "active": false
+              }
+            },
+            {
+              "id": "comp_3",
+              "type": "processor",
+              "properties": {
+                "capacity": 37,
+                "priority": "high",
+                "active": true
+              }
+            }
+          ],
+          "relationships": [
+            {
+              "id": "rel_0",
+              "source_id": "comp_1",
+              "target_id": "comp_0",
+              "type": "monitors",
+              "properties": {
+                "strength": 0.5975673465380554,
+                "bidirectional": false
+              }
+            },
+            {
+              "id": "rel_1",
+              "source_id": "comp_3",
+              "target_id": "comp_1",
+              "type": "depends_on",
+              "properties": {
+                "strength": 0.1085453918670953,
+                "bidirectional": true
+              }
+            },
+            {
+              "id": "rel_2",
+              "source_id": "comp_2",
+              "target_id": "comp_3",
+              "type": "monitors",
+              "properties": {
+                "strength": 0.8908816772758145,
+                "bidirectional": true
+              }
+            },
+            {
+              "id": "rel_3",
+              "source_id": "comp_3",
+              "target_id": "comp_1",
+              "type": "connects_to",
+              "properties": {
+                "strength": 0.7392001631376209,
+                "bidirectional": true
+              }
+            },
+            {
+              "id": "rel_4",
+              "source_id": "comp_3",
+              "target_id": "comp_1",
+              "type": "monitors",
+              "properties": {
+                "strength": 0.38554695470670364,
+                "bidirectional": true
+              }
+            },
+            {
+              "id": "rel_5",
+              "source_id": "comp_0",
+              "target_id": "comp_1",
+              "type": "connects_to",
+              "properties": {
+                "strength": 0.3418359250530799,
+                "bidirectional": true
+              }
+            }
+          ],
+          "structural_constraints": 0
+        },
+        "variables": {
+          "assignments": {},
+          "domains": {},
+          "dependencies": {}
+        },
+        "metadata": {
+          "generation_strategy": "random",
+          "iteration": 7,
+          "timestamp": 1769489491.7359955
+        }
+      },
+      {
+        "id": "candidate_8",
+        "structure": {
+          "components": [
+            {
+              "id": "comp_0",
+              "type": "storage",
+              "properties": {
+                "capacity": 32,
+                "priority": "high",
+                "active": false
+              }
+            },
+            {
+              "id": "comp_1",
+              "type": "memory",
+              "properties": {
+                "capacity": 7,
+                "priority": "high",
+                "active": true
+              }
+            },
+            {
+              "id": "comp_2",
+              "type": "sensor",
+              "properties": {
+                "capacity": 47,
+                "priority": "medium",
+                "active": true
+              }
+            }
+          ],
+          "relationships": [
+            {
+              "id": "rel_0",
+              "source_id": "comp_2",
+              "target_id": "comp_1",
+              "type": "monitors",
+              "properties": {
+                "strength": 0.5746243549772382,
+                "bidirectional": false
+              }
+            },
+            {
+              "id": "rel_1",
+              "source_id": "comp_1",
+              "target_id": "comp_2",
+              "type": "controls",
+              "properties": {
+                "strength": 0.6513590722319292,
+                "bidirectional": true
+              }
+            },
+            {
+              "id": "rel_2",
+              "source_id": "comp_1",
+              "target_id": "comp_0",
+              "type": "depends_on",
+              "properties": {
+                "strength": 0.4673225681069062,
+                "bidirectional": false
+              }
+            },
+            {
+              "id": "rel_3",
+              "source_id": "comp_0",
+              "target_id": "comp_1",
+              "type": "monitors",
+              "properties": {
+                "strength": 0.4900222918767634,
+                "bidirectional": false
+              }
+            },
+            {
+              "id": "rel_4",
+              "source_id": "comp_0",
+              "target_id": "comp_2",
+              "type": "depends_on",
+              "properties": {
+                "strength": 0.12128543260569352,
+                "bidirectional": false
+              }
+            }
+          ],
+          "structural_constraints": 0
+        },
+        "variables": {
+          "assignments": {},
+          "domains": {},
+          "dependencies": {}
+        },
+        "metadata": {
+          "generation_strategy": "random",
+          "iteration": 8,
+          "timestamp": 1769489491.7369761
+        }
+      }
+    ]
+  }
+}

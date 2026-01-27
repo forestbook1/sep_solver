@@ -1,0 +1,4 @@
+# file: C:\Users\U52476\dev\sep_solver-main\sep_solver-main\sep_solver\generators\structure_generator.py
+# hypothesis_version: 6.151.2
+
+[0.1, 1.0, 100, 'Component', 'Constraint', 'Modification', 'Relationship', 'StructuralConstraint', 'Structure', 'active', 'actuator', 'bidirectional', 'capacity', 'connects_to', 'controls', 'depends_on', 'high', 'low', 'max_components', 'medium', 'memory', 'min_components', 'monitors', 'network', 'priority', 'processor', 'sensor', 'storage', 'strength', 'temp_validation', 'variant_property']

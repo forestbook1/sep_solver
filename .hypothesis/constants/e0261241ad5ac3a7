@@ -1,0 +1,4 @@
+# file: C:\Users\U52476\dev\sep_solver-main\sep_solver-main\sep_solver\models\variable_assignment.py
+# hypothesis_version: 6.151.2
+
+[0.0, 1.0, 100, 'Domain', 'VariableAssignment', 'assignments', 'bool', 'constraints', 'default', 'dependencies', 'domains', 'enum', 'float', 'int', 'max', 'min', 'name', 'range', 'string', 'type', 'values']

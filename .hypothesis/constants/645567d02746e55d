@@ -1,0 +1,4 @@
+# file: C:\Users\genun\dev\sep_solver\sep_solver\models\design_object.py
+# hypothesis_version: 6.151.2
+
+['DesignObject', 'SchemaValidator', 'Structure', 'ValidationResult', 'VariableAssignment', 'id', 'metadata', 'structure', 'variables']

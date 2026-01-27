@@ -1,0 +1,4 @@
+# file: C:\Users\genun\dev\sep_solver\sep_solver\models\structure.py
+# hypothesis_version: 6.151.2
+
+['Component', 'Relationship', 'Structure', 'components', 'id', 'properties', 'relationships', 'source_id', 'target_id', 'type']

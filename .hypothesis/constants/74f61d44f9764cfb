@@ -1,0 +1,4 @@
+# file: C:\Users\U52476\dev\sep_solver-main\sep_solver-main\sep_solver\utils\progress.py
+# hypothesis_version: 6.151.2
+
+[0.0, 0.5, 1.0, 100.0, 100, 1024, 3600, '-', '=', 'COMPLETED', 'TERMINATED', 'candidates_evaluated', 'completion', 'cpu_usage_percent', 'csv', 'current_iteration', 'current_time', 'estimated_completion', 'event_type', 'final_metrics', 'json', 'memory_usage_mb', 'metrics', 'progress', 'solution_count', 'solution_found', 'solution_id', 'solutions_found', 'solutions_per_second', 'start', 'start_time', 'success', 'success_rate', 'target_solutions', 'timestamp', 'total_iterations', 'w', '█']

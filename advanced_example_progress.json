@@ -1,0 +1,593 @@
+[
+  {
+    "timestamp": "2026-01-27T13:50:44.969227",
+    "event_type": "start",
+    "total_iterations": 100,
+    "target_solutions": 3
+  },
+  {
+    "timestamp": "2026-01-27T13:50:45.005986",
+    "event_type": "progress",
+    "metrics": {
+      "current_iteration": 1,
+      "total_iterations": 100,
+      "solutions_found": 0,
+      "target_solutions": 3,
+      "candidates_evaluated": 0,
+      "start_time": "2026-01-27T13:50:44.969227",
+      "current_time": "2026-01-27T13:50:44.971226",
+      "estimated_completion": "2026-01-27T13:50:45.169127",
+      "iterations_per_second": 500.2501250625313,
+      "solutions_per_second": 0.0,
+      "average_evaluation_time": 0.0,
+      "success_rate": 0.0,
+      "constraint_violation_rate": 0.0,
+      "memory_usage_mb": 34.18359375,
+      "cpu_usage_percent": 0.0
+    }
+  },
+  {
+    "timestamp": "2026-01-27T13:50:45.011104",
+    "event_type": "solution_found",
+    "solution_count": 1,
+    "solution_id": "candidate_1"
+  },
+  {
+    "timestamp": "2026-01-27T13:50:45.015097",
+    "event_type": "solution_found",
+    "solution_count": 2,
+    "solution_id": "candidate_2"
+  },
+  {
+    "timestamp": "2026-01-27T13:50:45.018095",
+    "event_type": "solution_found",
+    "solution_count": 3,
+    "solution_id": "candidate_3"
+  },
+  {
+    "timestamp": "2026-01-27T13:50:45.020602",
+    "event_type": "completion",
+    "success": true,
+    "final_metrics": {
+      "current_iteration": 3,
+      "total_iterations": 100,
+      "solutions_found": 3,
+      "target_solutions": 3,
+      "candidates_evaluated": 3,
+      "start_time": "2026-01-27T13:50:44.969227",
+      "current_time": "2026-01-27T13:50:45.019096",
+      "estimated_completion": "2026-01-27T13:50:46.631527",
+      "iterations_per_second": 60.15761294591831,
+      "solutions_per_second": 60.15761294591831,
+      "average_evaluation_time": 0.013619263966878256,
+      "success_rate": 1.0,
+      "constraint_violation_rate": 0.0,
+      "memory_usage_mb": 34.24609375,
+      "cpu_usage_percent": 0.0
+    }
+  },
+  {
+    "timestamp": "2026-01-27T13:50:45.035072",
+    "event_type": "start",
+    "total_iterations": 150,
+    "target_solutions": 3
+  },
+  {
+    "timestamp": "2026-01-27T13:50:45.039068",
+    "event_type": "solution_found",
+    "solution_count": 1,
+    "solution_id": "candidate_1"
+  },
+  {
+    "timestamp": "2026-01-27T13:50:45.045081",
+    "event_type": "solution_found",
+    "solution_count": 2,
+    "solution_id": "candidate_2"
+  },
+  {
+    "timestamp": "2026-01-27T13:50:45.048077",
+    "event_type": "solution_found",
+    "solution_count": 3,
+    "solution_id": "candidate_3"
+  },
+  {
+    "timestamp": "2026-01-27T13:50:45.051076",
+    "event_type": "completion",
+    "success": true,
+    "final_metrics": {
+      "current_iteration": 3,
+      "total_iterations": 150,
+      "solutions_found": 3,
+      "target_solutions": 3,
+      "candidates_evaluated": 3,
+      "start_time": "2026-01-27T13:50:45.034066",
+      "current_time": "2026-01-27T13:50:45.050076",
+      "estimated_completion": "2026-01-27T13:50:45.834566",
+      "iterations_per_second": 187.38288569643973,
+      "solutions_per_second": 187.38288569643973,
+      "average_evaluation_time": 0.007142225901285808,
+      "success_rate": 1.0,
+      "constraint_violation_rate": 0.0,
+      "memory_usage_mb": 34.28125,
+      "cpu_usage_percent": 0.0
+    }
+  },
+  {
+    "timestamp": "2026-01-27T13:50:45.054077",
+    "event_type": "start",
+    "total_iterations": 100,
+    "target_solutions": 5
+  },
+  {
+    "timestamp": "2026-01-27T13:50:45.060592",
+    "event_type": "solution_found",
+    "solution_count": 1,
+    "solution_id": "candidate_1"
+  },
+  {
+    "timestamp": "2026-01-27T13:50:45.064590",
+    "event_type": "solution_found",
+    "solution_count": 2,
+    "solution_id": "candidate_2"
+  },
+  {
+    "timestamp": "2026-01-27T13:50:45.068106",
+    "event_type": "solution_found",
+    "solution_count": 3,
+    "solution_id": "candidate_3"
+  },
+  {
+    "timestamp": "2026-01-27T13:50:45.070104",
+    "event_type": "solution_found",
+    "solution_count": 4,
+    "solution_id": "candidate_4"
+  },
+  {
+    "timestamp": "2026-01-27T13:50:45.073105",
+    "event_type": "solution_found",
+    "solution_count": 5,
+    "solution_id": "candidate_5"
+  },
+  {
+    "timestamp": "2026-01-27T13:50:45.078637",
+    "event_type": "completion",
+    "success": true,
+    "final_metrics": {
+      "current_iteration": 5,
+      "total_iterations": 100,
+      "solutions_found": 5,
+      "target_solutions": 5,
+      "candidates_evaluated": 5,
+      "start_time": "2026-01-27T13:50:45.054077",
+      "current_time": "2026-01-27T13:50:45.077622",
+      "estimated_completion": "2026-01-27T13:50:45.524977",
+      "iterations_per_second": 212.35931195582927,
+      "solutions_per_second": 212.35931195582927,
+      "average_evaluation_time": 0.004167513413862748,
+      "success_rate": 1.0,
+      "constraint_violation_rate": 0.0,
+      "memory_usage_mb": 34.36328125,
+      "cpu_usage_percent": 0.0
+    }
+  },
+  {
+    "timestamp": "2026-01-27T13:50:45.081630",
+    "event_type": "start",
+    "total_iterations": 5000,
+    "target_solutions": 50
+  },
+  {
+    "timestamp": "2026-01-27T13:50:45.083632",
+    "event_type": "solution_found",
+    "solution_count": 1,
+    "solution_id": "candidate_1"
+  },
+  {
+    "timestamp": "2026-01-27T13:50:45.086631",
+    "event_type": "solution_found",
+    "solution_count": 2,
+    "solution_id": "candidate_2"
+  },
+  {
+    "timestamp": "2026-01-27T13:50:45.089630",
+    "event_type": "solution_found",
+    "solution_count": 3,
+    "solution_id": "candidate_3"
+  },
+  {
+    "timestamp": "2026-01-27T13:50:45.092639",
+    "event_type": "solution_found",
+    "solution_count": 4,
+    "solution_id": "candidate_4"
+  },
+  {
+    "timestamp": "2026-01-27T13:50:45.095637",
+    "event_type": "solution_found",
+    "solution_count": 5,
+    "solution_id": "candidate_5"
+  },
+  {
+    "timestamp": "2026-01-27T13:50:45.097638",
+    "event_type": "solution_found",
+    "solution_count": 6,
+    "solution_id": "candidate_6"
+  },
+  {
+    "timestamp": "2026-01-27T13:50:45.100674",
+    "event_type": "solution_found",
+    "solution_count": 7,
+    "solution_id": "candidate_7"
+  },
+  {
+    "timestamp": "2026-01-27T13:50:45.102638",
+    "event_type": "solution_found",
+    "solution_count": 8,
+    "solution_id": "candidate_8"
+  },
+  {
+    "timestamp": "2026-01-27T13:50:45.104650",
+    "event_type": "solution_found",
+    "solution_count": 9,
+    "solution_id": "candidate_9"
+  },
+  {
+    "timestamp": "2026-01-27T13:50:45.107193",
+    "event_type": "solution_found",
+    "solution_count": 10,
+    "solution_id": "candidate_10"
+  },
+  {
+    "timestamp": "2026-01-27T13:50:45.111196",
+    "event_type": "solution_found",
+    "solution_count": 11,
+    "solution_id": "candidate_11"
+  },
+  {
+    "timestamp": "2026-01-27T13:50:45.115194",
+    "event_type": "solution_found",
+    "solution_count": 12,
+    "solution_id": "candidate_12"
+  },
+  {
+    "timestamp": "2026-01-27T13:50:45.117194",
+    "event_type": "solution_found",
+    "solution_count": 13,
+    "solution_id": "candidate_13"
+  },
+  {
+    "timestamp": "2026-01-27T13:50:45.120194",
+    "event_type": "solution_found",
+    "solution_count": 14,
+    "solution_id": "candidate_14"
+  },
+  {
+    "timestamp": "2026-01-27T13:50:45.122194",
+    "event_type": "solution_found",
+    "solution_count": 15,
+    "solution_id": "candidate_15"
+  },
+  {
+    "timestamp": "2026-01-27T13:50:45.126197",
+    "event_type": "solution_found",
+    "solution_count": 16,
+    "solution_id": "candidate_16"
+  },
+  {
+    "timestamp": "2026-01-27T13:50:45.128704",
+    "event_type": "solution_found",
+    "solution_count": 17,
+    "solution_id": "candidate_17"
+  },
+  {
+    "timestamp": "2026-01-27T13:50:45.130713",
+    "event_type": "solution_found",
+    "solution_count": 18,
+    "solution_id": "candidate_18"
+  },
+  {
+    "timestamp": "2026-01-27T13:50:45.133713",
+    "event_type": "solution_found",
+    "solution_count": 19,
+    "solution_id": "candidate_19"
+  },
+  {
+    "timestamp": "2026-01-27T13:50:45.136720",
+    "event_type": "solution_found",
+    "solution_count": 20,
+    "solution_id": "candidate_20"
+  },
+  {
+    "timestamp": "2026-01-27T13:50:45.139730",
+    "event_type": "solution_found",
+    "solution_count": 21,
+    "solution_id": "candidate_21"
+  },
+  {
+    "timestamp": "2026-01-27T13:50:45.143719",
+    "event_type": "solution_found",
+    "solution_count": 22,
+    "solution_id": "candidate_22"
+  },
+  {
+    "timestamp": "2026-01-27T13:50:45.145737",
+    "event_type": "solution_found",
+    "solution_count": 23,
+    "solution_id": "candidate_23"
+  },
+  {
+    "timestamp": "2026-01-27T13:50:45.148718",
+    "event_type": "solution_found",
+    "solution_count": 24,
+    "solution_id": "candidate_24"
+  },
+  {
+    "timestamp": "2026-01-27T13:50:45.151019",
+    "event_type": "solution_found",
+    "solution_count": 25,
+    "solution_id": "candidate_25"
+  },
+  {
+    "timestamp": "2026-01-27T13:50:45.153037",
+    "event_type": "solution_found",
+    "solution_count": 26,
+    "solution_id": "candidate_26"
+  },
+  {
+    "timestamp": "2026-01-27T13:50:45.155526",
+    "event_type": "solution_found",
+    "solution_count": 27,
+    "solution_id": "candidate_27"
+  },
+  {
+    "timestamp": "2026-01-27T13:50:45.159534",
+    "event_type": "solution_found",
+    "solution_count": 28,
+    "solution_id": "candidate_28"
+  },
+  {
+    "timestamp": "2026-01-27T13:50:45.162533",
+    "event_type": "solution_found",
+    "solution_count": 29,
+    "solution_id": "candidate_29"
+  },
+  {
+    "timestamp": "2026-01-27T13:50:45.165112",
+    "event_type": "solution_found",
+    "solution_count": 30,
+    "solution_id": "candidate_30"
+  },
+  {
+    "timestamp": "2026-01-27T13:50:45.169111",
+    "event_type": "solution_found",
+    "solution_count": 31,
+    "solution_id": "candidate_31"
+  },
+  {
+    "timestamp": "2026-01-27T13:50:45.174616",
+    "event_type": "solution_found",
+    "solution_count": 32,
+    "solution_id": "candidate_32"
+  },
+  {
+    "timestamp": "2026-01-27T13:50:45.181146",
+    "event_type": "solution_found",
+    "solution_count": 33,
+    "solution_id": "candidate_33"
+  },
+  {
+    "timestamp": "2026-01-27T13:50:45.185660",
+    "event_type": "solution_found",
+    "solution_count": 34,
+    "solution_id": "candidate_34"
+  },
+  {
+    "timestamp": "2026-01-27T13:50:45.190670",
+    "event_type": "solution_found",
+    "solution_count": 35,
+    "solution_id": "candidate_35"
+  },
+  {
+    "timestamp": "2026-01-27T13:50:45.196336",
+    "event_type": "solution_found",
+    "solution_count": 36,
+    "solution_id": "candidate_36"
+  },
+  {
+    "timestamp": "2026-01-27T13:50:45.199335",
+    "event_type": "solution_found",
+    "solution_count": 37,
+    "solution_id": "candidate_37"
+  },
+  {
+    "timestamp": "2026-01-27T13:50:45.201334",
+    "event_type": "solution_found",
+    "solution_count": 38,
+    "solution_id": "candidate_38"
+  },
+  {
+    "timestamp": "2026-01-27T13:50:45.204336",
+    "event_type": "solution_found",
+    "solution_count": 39,
+    "solution_id": "candidate_39"
+  },
+  {
+    "timestamp": "2026-01-27T13:50:45.209851",
+    "event_type": "solution_found",
+    "solution_count": 40,
+    "solution_id": "candidate_40"
+  },
+  {
+    "timestamp": "2026-01-27T13:50:45.214849",
+    "event_type": "solution_found",
+    "solution_count": 41,
+    "solution_id": "candidate_41"
+  },
+  {
+    "timestamp": "2026-01-27T13:50:45.217850",
+    "event_type": "solution_found",
+    "solution_count": 42,
+    "solution_id": "candidate_42"
+  },
+  {
+    "timestamp": "2026-01-27T13:50:45.220359",
+    "event_type": "solution_found",
+    "solution_count": 43,
+    "solution_id": "candidate_43"
+  },
+  {
+    "timestamp": "2026-01-27T13:50:45.223369",
+    "event_type": "solution_found",
+    "solution_count": 44,
+    "solution_id": "candidate_44"
+  },
+  {
+    "timestamp": "2026-01-27T13:50:45.227372",
+    "event_type": "solution_found",
+    "solution_count": 45,
+    "solution_id": "candidate_45"
+  },
+  {
+    "timestamp": "2026-01-27T13:50:45.230373",
+    "event_type": "solution_found",
+    "solution_count": 46,
+    "solution_id": "candidate_46"
+  },
+  {
+    "timestamp": "2026-01-27T13:50:45.233367",
+    "event_type": "solution_found",
+    "solution_count": 47,
+    "solution_id": "candidate_47"
+  },
+  {
+    "timestamp": "2026-01-27T13:50:45.236371",
+    "event_type": "solution_found",
+    "solution_count": 48,
+    "solution_id": "candidate_48"
+  },
+  {
+    "timestamp": "2026-01-27T13:50:45.238368",
+    "event_type": "solution_found",
+    "solution_count": 49,
+    "solution_id": "candidate_49"
+  },
+  {
+    "timestamp": "2026-01-27T13:50:45.242380",
+    "event_type": "solution_found",
+    "solution_count": 50,
+    "solution_id": "candidate_50"
+  },
+  {
+    "timestamp": "2026-01-27T13:50:45.247374",
+    "event_type": "completion",
+    "success": true,
+    "final_metrics": {
+      "current_iteration": 50,
+      "total_iterations": 5000,
+      "solutions_found": 50,
+      "target_solutions": 50,
+      "candidates_evaluated": 50,
+      "start_time": "2026-01-27T13:50:45.081630",
+      "current_time": "2026-01-27T13:50:45.246379",
+      "estimated_completion": "2026-01-27T13:51:01.556530",
+      "iterations_per_second": 303.4919787070028,
+      "solutions_per_second": 303.4919787070028,
+      "average_evaluation_time": 0.0011013883059142065,
+      "success_rate": 1.0,
+      "constraint_violation_rate": 0.0,
+      "memory_usage_mb": 34.9375,
+      "cpu_usage_percent": 0.0
+    }
+  },
+  {
+    "timestamp": "2026-01-27T13:50:45.251373",
+    "event_type": "start",
+    "total_iterations": 1000,
+    "target_solutions": 10
+  },
+  {
+    "timestamp": "2026-01-27T13:50:45.254373",
+    "event_type": "solution_found",
+    "solution_count": 1,
+    "solution_id": "candidate_1"
+  },
+  {
+    "timestamp": "2026-01-27T13:50:45.258084",
+    "event_type": "solution_found",
+    "solution_count": 2,
+    "solution_id": "candidate_2"
+  },
+  {
+    "timestamp": "2026-01-27T13:50:45.262101",
+    "event_type": "solution_found",
+    "solution_count": 3,
+    "solution_id": "candidate_3"
+  },
+  {
+    "timestamp": "2026-01-27T13:50:45.266082",
+    "event_type": "solution_found",
+    "solution_count": 4,
+    "solution_id": "candidate_4"
+  },
+  {
+    "timestamp": "2026-01-27T13:50:45.272608",
+    "event_type": "solution_found",
+    "solution_count": 5,
+    "solution_id": "candidate_5"
+  },
+  {
+    "timestamp": "2026-01-27T13:50:45.283855",
+    "event_type": "completion",
+    "success": true,
+    "final_metrics": {
+      "current_iteration": 5,
+      "total_iterations": 1000,
+      "solutions_found": 5,
+      "target_solutions": 10,
+      "candidates_evaluated": 5,
+      "start_time": "2026-01-27T13:50:45.251373",
+      "current_time": "2026-01-27T13:50:45.282854",
+      "estimated_completion": "2026-01-27T13:50:51.547573",
+      "iterations_per_second": 158.82595851465962,
+      "solutions_per_second": 158.82595851465962,
+      "average_evaluation_time": 0.0010331038272742069,
+      "success_rate": 1.0,
+      "constraint_violation_rate": 0.0,
+      "memory_usage_mb": 34.9453125,
+      "cpu_usage_percent": 0.0
+    }
+  },
+  {
+    "timestamp": "2026-01-27T13:50:45.292863",
+    "event_type": "start",
+    "total_iterations": 50,
+    "target_solutions": 3
+  },
+  {
+    "timestamp": "2026-01-27T13:50:45.297858",
+    "event_type": "solution_found",
+    "solution_count": 1,
+    "solution_id": "candidate_1"
+  },
+  {
+    "timestamp": "2026-01-27T13:50:45.302857",
+    "event_type": "completion",
+    "success": true,
+    "final_metrics": {
+      "current_iteration": 1,
+      "total_iterations": 50,
+      "solutions_found": 1,
+      "target_solutions": 3,
+      "candidates_evaluated": 1,
+      "start_time": "2026-01-27T13:50:45.291869",
+      "current_time": "2026-01-27T13:50:45.301858",
+      "estimated_completion": "2026-01-27T13:50:45.791319",
+      "iterations_per_second": 100.11012113324658,
+      "solutions_per_second": 100.11012113324658,
+      "average_evaluation_time": 0.0010176843671656367,
+      "success_rate": 1.0,
+      "constraint_violation_rate": 0.0,
+      "memory_usage_mb": 34.9453125,
+      "cpu_usage_percent": 0.0
+    }
+  }
+]
