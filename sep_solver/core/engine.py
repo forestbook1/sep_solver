@@ -879,7 +879,7 @@ class SEPEngine:
         
         Args:
             format: Export format ("json", "xml", "csv", "yaml", "dot", "summary")
-            filename: Optional filename to write to
+            filename: Optional filename to write to (will be placed in output directory)
             include_metadata: Whether to include metadata in export
             
         Returns:
@@ -894,10 +894,12 @@ class SEPEngine:
         visualizer = SolutionVisualizer()
         
         if filename:
-            visualizer.export_solutions(solutions, filename, format, include_metadata)
+            # Use output directory
+            output_path = self._get_output_path(filename)
+            visualizer.export_solutions(solutions, output_path, format, include_metadata)
             if self.logger:
-                self.logger.info(f"Exported {len(solutions)} solutions to {filename} in {format} format")
-            return f"Exported {len(solutions)} solutions to {filename}"
+                self.logger.info(f"Exported {len(solutions)} solutions to {output_path} in {format} format")
+            return f"Exported {len(solutions)} solutions to {output_path}"
         else:
             # Return as string for supported formats
             if format == "json":
@@ -990,14 +992,15 @@ class SEPEngine:
         )
         
         if output_file:
+            # Use output directory
+            output_path = self._get_output_path(output_file)
             from pathlib import Path
-            output_path = Path(output_file)
-            output_path.parent.mkdir(parents=True, exist_ok=True)
+            Path(output_path).parent.mkdir(parents=True, exist_ok=True)
             with open(output_path, 'w', encoding='utf-8') as f:
                 f.write(html)
             if self.logger:
-                self.logger.info(f"Created interactive visualization: {output_file}")
-            return f"Visualization saved to {output_file}"
+                self.logger.info(f"Created interactive visualization: {output_path}")
+            return f"Visualization saved to {output_path}"
         
         return html
     
@@ -1034,14 +1037,15 @@ class SEPEngine:
         html = visualizer.visualize_solutions_comparison(solutions, max_solutions=max_solutions)
         
         if output_file:
+            # Use output directory
+            output_path = self._get_output_path(output_file)
             from pathlib import Path
-            output_path = Path(output_file)
-            output_path.parent.mkdir(parents=True, exist_ok=True)
+            Path(output_path).parent.mkdir(parents=True, exist_ok=True)
             with open(output_path, 'w', encoding='utf-8') as f:
                 f.write(html)
             if self.logger:
-                self.logger.info(f"Created comparison visualization: {output_file}")
-            return f"Comparison saved to {output_file}"
+                self.logger.info(f"Created comparison visualization: {output_path}")
+            return f"Comparison saved to {output_path}"
         
         return html
     
@@ -1076,14 +1080,15 @@ class SEPEngine:
         html = visualizer.visualize_solution_statistics(solutions)
         
         if output_file:
+            # Use output directory
+            output_path = self._get_output_path(output_file)
             from pathlib import Path
-            output_path = Path(output_file)
-            output_path.parent.mkdir(parents=True, exist_ok=True)
+            Path(output_path).parent.mkdir(parents=True, exist_ok=True)
             with open(output_path, 'w', encoding='utf-8') as f:
                 f.write(html)
             if self.logger:
-                self.logger.info(f"Created statistics visualization: {output_file}")
-            return f"Statistics saved to {output_file}"
+                self.logger.info(f"Created statistics visualization: {output_path}")
+            return f"Statistics saved to {output_path}"
         
         return html
     
@@ -1118,13 +1123,15 @@ class SEPEngine:
             exploration_state=self.exploration_state
         )
         
-        output_path = Path(output_file)
-        output_path.parent.mkdir(parents=True, exist_ok=True)
+        # Use output directory
+        output_path = self._get_output_path(output_file)
+        from pathlib import Path
+        Path(output_path).parent.mkdir(parents=True, exist_ok=True)
         with open(output_path, 'w', encoding='utf-8') as f:
             f.write(html)
         
         if self.logger:
-            self.logger.info(f"Created interactive dashboard: {output_file}")
+            self.logger.info(f"Created interactive dashboard: {output_path}")
     
     def visualize_exploration_metrics(self, output_file: Optional[str] = None) -> str:
         """Create interactive visualization of exploration metrics.
@@ -1151,14 +1158,15 @@ class SEPEngine:
         html = visualizer.visualize_exploration_metrics(self.exploration_state)
         
         if output_file:
+            # Use output directory
+            output_path = self._get_output_path(output_file)
             from pathlib import Path
-            output_path = Path(output_file)
-            output_path.parent.mkdir(parents=True, exist_ok=True)
+            Path(output_path).parent.mkdir(parents=True, exist_ok=True)
             with open(output_path, 'w', encoding='utf-8') as f:
                 f.write(html)
             if self.logger:
-                self.logger.info(f"Created metrics visualization: {output_file}")
-            return f"Metrics visualization saved to {output_file}"
+                self.logger.info(f"Created metrics visualization: {output_path}")
+            return f"Metrics visualization saved to {output_path}"
         
         return html
     
