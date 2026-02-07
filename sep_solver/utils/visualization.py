@@ -10,6 +10,21 @@ from ..models.design_object import DesignObject
 from ..models.structure import Structure, Component, Relationship
 from ..models.variable_assignment import VariableAssignment
 
+# Optional interactive visualization dependencies
+try:
+    import networkx as nx
+    NETWORKX_AVAILABLE = True
+except ImportError:
+    NETWORKX_AVAILABLE = False
+
+try:
+    import plotly.graph_objects as go
+    import plotly.express as px
+    from plotly.subplots import make_subplots
+    PLOTLY_AVAILABLE = True
+except ImportError:
+    PLOTLY_AVAILABLE = False
+
 
 class SolutionVisualizer:
     """Provides visualization and export capabilities for SEP solver solutions."""
@@ -17,6 +32,12 @@ class SolutionVisualizer:
     def __init__(self):
         """Initialize the solution visualizer."""
         self.export_formats = ["json", "xml", "csv", "yaml", "dot", "summary"]
+        self.interactive_formats = ["html", "interactive"]
+        
+        # Check for interactive visualization capabilities
+        self.has_networkx = NETWORKX_AVAILABLE
+        self.has_plotly = PLOTLY_AVAILABLE
+        self.interactive_enabled = NETWORKX_AVAILABLE and PLOTLY_AVAILABLE
     
     def export_solutions(self, solutions: List[DesignObject], 
                         filename: str, format: str = "json",
@@ -110,8 +131,8 @@ class SolutionVisualizer:
                 rel_elem = ET.SubElement(relationships_elem, "relationship")
                 rel_elem.set("id", relationship.id)
                 rel_elem.set("type", relationship.type)
-                rel_elem.set("from", relationship.from_component)
-                rel_elem.set("to", relationship.to_component)
+                rel_elem.set("from", relationship.source_id)
+                rel_elem.set("to", relationship.target_id)
             
             # Variables
             variables_elem = ET.SubElement(solution_elem, "variables")
@@ -232,8 +253,8 @@ class SolutionVisualizer:
                 for rel in solution.structure.relationships:
                     f.write(f"        - id: {rel.id}\n")
                     f.write(f"          type: {rel.type}\n")
-                    f.write(f"          from: {rel.from_component}\n")
-                    f.write(f"          to: {rel.to_component}\n")
+                    f.write(f"          from: {rel.source_id}\n")
+                    f.write(f"          to: {rel.target_id}\n")
                 
                 f.write(f"    variables:\n")
                 for var_name, var_value in solution.variables.assignments.items():
@@ -270,8 +291,8 @@ class SolutionVisualizer:
                 
                 # Add relationships as edges
                 for rel in solution.structure.relationships:
-                    from_node = f"s{sol_idx}_{rel.from_component}"
-                    to_node = f"s{sol_idx}_{rel.to_component}"
+                    from_node = f"s{sol_idx}_{rel.source_id}"
+                    to_node = f"s{sol_idx}_{rel.target_id}"
                     f.write(f"    {from_node} -> {to_node} [label=\"{rel.type}\"];\n")
                 
                 # Add variable assignments as annotations
@@ -554,7 +575,700 @@ class SolutionVisualizer:
         Returns:
             List of supported format names
         """
-        return self.export_formats.copy()
+        formats = self.export_formats.copy()
+        if self.interactive_enabled:
+            formats.extend(self.interactive_formats)
+        return formats
+    
+    # ========== Interactive Visualization Methods ==========
+    
+    def visualize_solution_interactive(self, solution: DesignObject, 
+                                      layout: str = "spring",
+                                      show_variables: bool = True,
+                                      show_metadata: bool = False) -> str:
+        """Create interactive HTML visualization of a single solution.
+        
+        Args:
+            solution: Solution to visualize
+            layout: Graph layout algorithm ("spring", "circular", "hierarchical", "kamada_kawai")
+            show_variables: Whether to show variable assignments
+            show_metadata: Whether to show metadata
+            
+        Returns:
+            HTML string with interactive visualization
+            
+        Raises:
+            ImportError: If required libraries are not available
+        """
+        if not self.interactive_enabled:
+            raise ImportError(
+                "Interactive visualization requires 'networkx' and 'plotly'. "
+                "Install with: pip install networkx plotly"
+            )
+        
+        # Build graph with NetworkX
+        G = nx.DiGraph()
+        
+        # Add components as nodes with attributes
+        for comp in solution.structure.components:
+            G.add_node(
+                comp.id,
+                type=comp.type,
+                label=f"{comp.id}",
+                node_type="component"
+            )
+        
+        # Add relationships as edges
+        for rel in solution.structure.relationships:
+            G.add_edge(
+                rel.source_id,
+                rel.target_id,
+                type=rel.type,
+                label=rel.type,
+                relationship_id=rel.id
+            )
+        
+        # Choose layout algorithm
+        if layout == "spring":
+            pos = nx.spring_layout(G, k=2, iterations=50, seed=42)
+        elif layout == "circular":
+            pos = nx.circular_layout(G)
+        elif layout == "hierarchical":
+            pos = nx.kamada_kawai_layout(G)
+        elif layout == "kamada_kawai":
+            pos = nx.kamada_kawai_layout(G)
+        else:
+            pos = nx.spring_layout(G, seed=42)
+        
+        # Create edge traces
+        edge_traces = []
+        edge_annotations = []
+        
+        for edge in G.edges(data=True):
+            x0, y0 = pos[edge[0]]
+            x1, y1 = pos[edge[1]]
+            
+            # Edge line
+            edge_trace = go.Scatter(
+                x=[x0, x1, None],
+                y=[y0, y1, None],
+                mode='lines',
+                line=dict(width=2, color='#888'),
+                hoverinfo='text',
+                hovertext=f"{edge[0]} → {edge[1]}<br>Type: {edge[2].get('type', 'N/A')}",
+                showlegend=False
+            )
+            edge_traces.append(edge_trace)
+            
+            # Edge label annotation
+            edge_annotations.append(
+                dict(
+                    x=(x0 + x1) / 2,
+                    y=(y0 + y1) / 2,
+                    text=edge[2].get('type', ''),
+                    showarrow=False,
+                    font=dict(size=10, color='#666'),
+                    bgcolor='rgba(255, 255, 255, 0.8)',
+                    borderpad=2
+                )
+            )
+        
+        # Create node trace
+        node_x = []
+        node_y = []
+        node_text = []
+        node_hover = []
+        node_colors = []
+        
+        # Color map for component types
+        component_types = list(set(G.nodes[node]['type'] for node in G.nodes()))
+        color_map = {comp_type: px.colors.qualitative.Set3[i % len(px.colors.qualitative.Set3)] 
+                    for i, comp_type in enumerate(component_types)}
+        
+        for node in G.nodes():
+            x, y = pos[node]
+            node_x.append(x)
+            node_y.append(y)
+            
+            node_data = G.nodes[node]
+            node_text.append(node_data['label'])
+            
+            # Build hover text
+            hover_parts = [
+                f"<b>{node}</b>",
+                f"Type: {node_data['type']}",
+                f"Connections: {G.degree(node)}"
+            ]
+            node_hover.append("<br>".join(hover_parts))
+            
+            # Color by component type
+            node_colors.append(color_map[node_data['type']])
+        
+        node_trace = go.Scatter(
+            x=node_x,
+            y=node_y,
+            mode='markers+text',
+            text=node_text,
+            textposition="top center",
+            textfont=dict(size=12, color='#000'),
+            marker=dict(
+                size=30,
+                color=node_colors,
+                line=dict(width=2, color='#000')
+            ),
+            hoverinfo='text',
+            hovertext=node_hover,
+            showlegend=False
+        )
+        
+        # Create figure
+        fig = go.Figure(data=edge_traces + [node_trace])
+        
+        # Update layout
+        title_text = f'Solution: {solution.id}'
+        if show_metadata and solution.metadata:
+            title_text += f" | Strategy: {solution.metadata.get('generation_strategy', 'N/A')}"
+        
+        fig.update_layout(
+            title=dict(text=title_text, x=0.5, xanchor='center'),
+            showlegend=False,
+            hovermode='closest',
+            margin=dict(b=20, l=5, r=5, t=40),
+            xaxis=dict(showgrid=False, zeroline=False, showticklabels=False),
+            yaxis=dict(showgrid=False, zeroline=False, showticklabels=False),
+            plot_bgcolor='rgba(250, 250, 250, 1)',
+            annotations=edge_annotations,
+            height=600
+        )
+        
+        # Add variable information as annotation if requested
+        if show_variables and solution.variables.assignments:
+            var_text = "<b>Variables:</b><br>"
+            var_items = list(solution.variables.assignments.items())[:10]  # Limit to 10
+            for var_name, var_value in var_items:
+                var_text += f"{var_name} = {var_value}<br>"
+            if len(solution.variables.assignments) > 10:
+                var_text += f"... and {len(solution.variables.assignments) - 10} more"
+            
+            fig.add_annotation(
+                xref="paper", yref="paper",
+                x=0.02, y=0.98,
+                text=var_text,
+                showarrow=False,
+                font=dict(size=10),
+                align="left",
+                bgcolor="rgba(255, 255, 200, 0.9)",
+                bordercolor="black",
+                borderwidth=1,
+                xanchor="left",
+                yanchor="top"
+            )
+        
+        return fig.to_html(include_plotlyjs='cdn', full_html=True)
+    
+    def visualize_solutions_comparison(self, solutions: List[DesignObject],
+                                      max_solutions: int = 6) -> str:
+        """Create interactive comparison visualization of multiple solutions.
+        
+        Args:
+            solutions: List of solutions to compare
+            max_solutions: Maximum number of solutions to display
+            
+        Returns:
+            HTML string with interactive comparison visualization
+            
+        Raises:
+            ImportError: If required libraries are not available
+        """
+        if not self.interactive_enabled:
+            raise ImportError(
+                "Interactive visualization requires 'networkx' and 'plotly'. "
+                "Install with: pip install networkx plotly"
+            )
+        
+        solutions = solutions[:max_solutions]
+        
+        # Create subplots
+        rows = (len(solutions) + 2) // 3  # 3 columns
+        cols = min(3, len(solutions))
+        
+        fig = make_subplots(
+            rows=rows,
+            cols=cols,
+            subplot_titles=[f"{sol.id}" for sol in solutions],
+            specs=[[{"type": "scatter"}] * cols for _ in range(rows)],
+            vertical_spacing=0.15,
+            horizontal_spacing=0.1
+        )
+        
+        for idx, solution in enumerate(solutions):
+            row = idx // 3 + 1
+            col = idx % 3 + 1
+            
+            # Build graph
+            G = nx.DiGraph()
+            for comp in solution.structure.components:
+                G.add_node(comp.id, type=comp.type)
+            for rel in solution.structure.relationships:
+                G.add_edge(rel.source_id, rel.target_id)
+            
+            # Layout
+            pos = nx.spring_layout(G, k=1.5, iterations=30, seed=42)
+            
+            # Add edges
+            for edge in G.edges():
+                x0, y0 = pos[edge[0]]
+                x1, y1 = pos[edge[1]]
+                fig.add_trace(
+                    go.Scatter(
+                        x=[x0, x1, None],
+                        y=[y0, y1, None],
+                        mode='lines',
+                        line=dict(width=1, color='#888'),
+                        hoverinfo='skip',
+                        showlegend=False
+                    ),
+                    row=row, col=col
+                )
+            
+            # Add nodes
+            node_x = [pos[node][0] for node in G.nodes()]
+            node_y = [pos[node][1] for node in G.nodes()]
+            
+            fig.add_trace(
+                go.Scatter(
+                    x=node_x,
+                    y=node_y,
+                    mode='markers',
+                    marker=dict(size=15, color='lightblue', line=dict(width=1)),
+                    hovertext=[f"{node}<br>{G.nodes[node]['type']}" for node in G.nodes()],
+                    hoverinfo='text',
+                    showlegend=False
+                ),
+                row=row, col=col
+            )
+        
+        # Update layout
+        fig.update_xaxes(showgrid=False, zeroline=False, showticklabels=False)
+        fig.update_yaxes(showgrid=False, zeroline=False, showticklabels=False)
+        fig.update_layout(
+            title_text="Solution Comparison",
+            height=300 * rows,
+            showlegend=False,
+            hovermode='closest'
+        )
+        
+        return fig.to_html(include_plotlyjs='cdn', full_html=True)
+    
+    def visualize_solution_statistics(self, solutions: List[DesignObject]) -> str:
+        """Create interactive statistical visualization of solutions.
+        
+        Args:
+            solutions: List of solutions to analyze
+            
+        Returns:
+            HTML string with interactive statistical charts
+            
+        Raises:
+            ImportError: If required libraries are not available
+        """
+        if not self.interactive_enabled:
+            raise ImportError(
+                "Interactive visualization requires 'networkx' and 'plotly'. "
+                "Install with: pip install networkx plotly"
+            )
+        
+        if not solutions:
+            return "<html><body><h3>No solutions to visualize</h3></body></html>"
+        
+        # Collect statistics
+        stats_data = {
+            'solution_id': [],
+            'components': [],
+            'relationships': [],
+            'variables': [],
+            'component_types': [],
+            'relationship_types': []
+        }
+        
+        for solution in solutions:
+            stats_data['solution_id'].append(solution.id)
+            stats_data['components'].append(len(solution.structure.components))
+            stats_data['relationships'].append(len(solution.structure.relationships))
+            stats_data['variables'].append(len(solution.variables.assignments))
+            
+            comp_types = [comp.type for comp in solution.structure.components]
+            rel_types = [rel.type for rel in solution.structure.relationships]
+            stats_data['component_types'].append(', '.join(set(comp_types)))
+            stats_data['relationship_types'].append(', '.join(set(rel_types)))
+        
+        # Create subplots
+        fig = make_subplots(
+            rows=2, cols=2,
+            subplot_titles=(
+                'Components per Solution',
+                'Relationships per Solution',
+                'Variables per Solution',
+                'Structure Complexity'
+            ),
+            specs=[
+                [{"type": "bar"}, {"type": "bar"}],
+                [{"type": "bar"}, {"type": "scatter"}]
+            ]
+        )
+        
+        # Components bar chart
+        fig.add_trace(
+            go.Bar(
+                x=stats_data['solution_id'],
+                y=stats_data['components'],
+                name='Components',
+                marker_color='lightblue'
+            ),
+            row=1, col=1
+        )
+        
+        # Relationships bar chart
+        fig.add_trace(
+            go.Bar(
+                x=stats_data['solution_id'],
+                y=stats_data['relationships'],
+                name='Relationships',
+                marker_color='lightcoral'
+            ),
+            row=1, col=2
+        )
+        
+        # Variables bar chart
+        fig.add_trace(
+            go.Bar(
+                x=stats_data['solution_id'],
+                y=stats_data['variables'],
+                name='Variables',
+                marker_color='lightgreen'
+            ),
+            row=2, col=1
+        )
+        
+        # Complexity scatter plot
+        fig.add_trace(
+            go.Scatter(
+                x=stats_data['components'],
+                y=stats_data['relationships'],
+                mode='markers+text',
+                text=stats_data['solution_id'],
+                textposition="top center",
+                marker=dict(
+                    size=15,
+                    color=stats_data['variables'],
+                    colorscale='Viridis',
+                    showscale=True,
+                    colorbar=dict(title="Variables")
+                ),
+                name='Complexity'
+            ),
+            row=2, col=2
+        )
+        
+        # Update layout
+        fig.update_xaxes(title_text="Solution ID", row=1, col=1)
+        fig.update_xaxes(title_text="Solution ID", row=1, col=2)
+        fig.update_xaxes(title_text="Solution ID", row=2, col=1)
+        fig.update_xaxes(title_text="Components", row=2, col=2)
+        
+        fig.update_yaxes(title_text="Count", row=1, col=1)
+        fig.update_yaxes(title_text="Count", row=1, col=2)
+        fig.update_yaxes(title_text="Count", row=2, col=1)
+        fig.update_yaxes(title_text="Relationships", row=2, col=2)
+        
+        fig.update_layout(
+            title_text="Solution Statistics Dashboard",
+            height=800,
+            showlegend=False,
+            hovermode='closest'
+        )
+        
+        return fig.to_html(include_plotlyjs='cdn', full_html=True)
+    
+    def visualize_exploration_metrics(self, exploration_state) -> str:
+        """Create interactive visualization of exploration metrics.
+        
+        Args:
+            exploration_state: ExplorationState object with metrics
+            
+        Returns:
+            HTML string with interactive metrics visualization
+            
+        Raises:
+            ImportError: If required libraries are not available
+        """
+        if not self.interactive_enabled:
+            raise ImportError(
+                "Interactive visualization requires 'networkx' and 'plotly'. "
+                "Install with: pip install networkx plotly"
+            )
+        
+        # Create subplots
+        fig = make_subplots(
+            rows=2, cols=2,
+            subplot_titles=(
+                'Constraint Violations',
+                'Component Performance',
+                'Candidate Evaluation Timeline',
+                'Success Rate Over Time'
+            ),
+            specs=[
+                [{"type": "bar"}, {"type": "bar"}],
+                [{"type": "scatter"}, {"type": "scatter"}]
+            ]
+        )
+        
+        # Constraint violations
+        violations = exploration_state.get_most_violated_constraints(10)
+        if violations:
+            constraint_ids = [v[0] for v in violations]
+            violation_counts = [v[1] for v in violations]
+            
+            fig.add_trace(
+                go.Bar(
+                    x=constraint_ids,
+                    y=violation_counts,
+                    name='Violations',
+                    marker_color='salmon'
+                ),
+                row=1, col=1
+            )
+        
+        # Component performance
+        perf_summary = exploration_state.get_component_performance_summary()
+        if perf_summary:
+            components = list(perf_summary.keys())
+            avg_times = [perf_summary[comp]['average_time'] for comp in components]
+            
+            fig.add_trace(
+                go.Bar(
+                    x=components,
+                    y=avg_times,
+                    name='Avg Time',
+                    marker_color='lightblue'
+                ),
+                row=1, col=2
+            )
+        
+        # Candidate evaluation timeline
+        snapshots = exploration_state.candidate_snapshots[-50:]  # Last 50
+        if snapshots:
+            iterations = [s.step for s in snapshots]
+            eval_times = [s.validation_result.get('evaluation_time', 0) for s in snapshots]
+            is_valid = [s.validation_result.get('is_valid', False) for s in snapshots]
+            
+            colors = ['green' if valid else 'red' for valid in is_valid]
+            
+            fig.add_trace(
+                go.Scatter(
+                    x=iterations,
+                    y=eval_times,
+                    mode='markers',
+                    marker=dict(size=8, color=colors),
+                    name='Evaluation Time',
+                    hovertext=[f"Valid: {v}" for v in is_valid]
+                ),
+                row=2, col=1
+            )
+        
+        # Success rate over time
+        if snapshots:
+            window_size = 10
+            success_rates = []
+            windows = []
+            
+            for i in range(len(snapshots) - window_size + 1):
+                window = snapshots[i:i+window_size]
+                success_rate = sum(1 for s in window if s.validation_result.get('is_valid', False)) / window_size
+                success_rates.append(success_rate * 100)
+                windows.append(window[-1].step)
+            
+            fig.add_trace(
+                go.Scatter(
+                    x=windows,
+                    y=success_rates,
+                    mode='lines+markers',
+                    name='Success Rate',
+                    line=dict(color='green', width=2)
+                ),
+                row=2, col=2
+            )
+        
+        # Update layout
+        fig.update_xaxes(title_text="Constraint", row=1, col=1)
+        fig.update_xaxes(title_text="Component", row=1, col=2)
+        fig.update_xaxes(title_text="Iteration", row=2, col=1)
+        fig.update_xaxes(title_text="Iteration", row=2, col=2)
+        
+        fig.update_yaxes(title_text="Count", row=1, col=1)
+        fig.update_yaxes(title_text="Time (s)", row=1, col=2)
+        fig.update_yaxes(title_text="Time (s)", row=2, col=1)
+        fig.update_yaxes(title_text="Success Rate (%)", row=2, col=2)
+        
+        fig.update_layout(
+            title_text="Exploration Metrics Dashboard",
+            height=800,
+            showlegend=False,
+            hovermode='closest'
+        )
+        
+        return fig.to_html(include_plotlyjs='cdn', full_html=True)
+    
+    def export_interactive_visualization(self, solutions: List[DesignObject],
+                                        filename: str,
+                                        viz_type: str = "single",
+                                        **kwargs) -> None:
+        """Export interactive visualization to HTML file.
+        
+        Args:
+            solutions: List of solutions to visualize
+            filename: Output HTML filename
+            viz_type: Type of visualization ("single", "comparison", "statistics")
+            **kwargs: Additional arguments for specific visualization types
+            
+        Raises:
+            ImportError: If required libraries are not available
+            ValueError: If viz_type is not supported
+        """
+        if not self.interactive_enabled:
+            raise ImportError(
+                "Interactive visualization requires 'networkx' and 'plotly'. "
+                "Install with: pip install networkx plotly"
+            )
+        
+        output_path = Path(filename)
+        output_path.parent.mkdir(parents=True, exist_ok=True)
+        
+        if viz_type == "single":
+            if not solutions:
+                raise ValueError("No solutions provided")
+            html_content = self.visualize_solution_interactive(solutions[0], **kwargs)
+        elif viz_type == "comparison":
+            html_content = self.visualize_solutions_comparison(solutions, **kwargs)
+        elif viz_type == "statistics":
+            html_content = self.visualize_solution_statistics(solutions)
+        else:
+            raise ValueError(f"Unsupported visualization type: {viz_type}")
+        
+        with open(output_path, 'w', encoding='utf-8') as f:
+            f.write(html_content)
+    
+    def create_interactive_dashboard(self, solutions: List[DesignObject],
+                                    exploration_state=None) -> str:
+        """Create comprehensive interactive dashboard with all visualizations.
+        
+        Args:
+            solutions: List of solutions to visualize
+            exploration_state: Optional exploration state for metrics
+            
+        Returns:
+            HTML string with complete dashboard
+            
+        Raises:
+            ImportError: If required libraries are not available
+        """
+        if not self.interactive_enabled:
+            raise ImportError(
+                "Interactive visualization requires 'networkx' and 'plotly'. "
+                "Install with: pip install networkx plotly"
+            )
+        
+        html_parts = [
+            "<!DOCTYPE html>",
+            "<html>",
+            "<head>",
+            "<title>SEP Solver Dashboard</title>",
+            "<style>",
+            "body { font-family: Arial, sans-serif; margin: 20px; background-color: #f5f5f5; }",
+            "h1 { color: #333; text-align: center; }",
+            "h2 { color: #666; border-bottom: 2px solid #ddd; padding-bottom: 10px; }",
+            ".section { background: white; padding: 20px; margin: 20px 0; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }",
+            ".stats { display: flex; justify-content: space-around; margin: 20px 0; }",
+            ".stat-box { text-align: center; padding: 15px; background: #e3f2fd; border-radius: 5px; }",
+            ".stat-value { font-size: 2em; font-weight: bold; color: #1976d2; }",
+            ".stat-label { color: #666; margin-top: 5px; }",
+            "</style>",
+            "</head>",
+            "<body>",
+            "<h1>SEP Solver Interactive Dashboard</h1>",
+        ]
+        
+        # Summary statistics
+        html_parts.append("<div class='section'>")
+        html_parts.append("<h2>Summary</h2>")
+        html_parts.append("<div class='stats'>")
+        
+        html_parts.append("<div class='stat-box'>")
+        html_parts.append(f"<div class='stat-value'>{len(solutions)}</div>")
+        html_parts.append("<div class='stat-label'>Solutions Found</div>")
+        html_parts.append("</div>")
+        
+        if solutions:
+            avg_components = sum(len(s.structure.components) for s in solutions) / len(solutions)
+            html_parts.append("<div class='stat-box'>")
+            html_parts.append(f"<div class='stat-value'>{avg_components:.1f}</div>")
+            html_parts.append("<div class='stat-label'>Avg Components</div>")
+            html_parts.append("</div>")
+            
+            avg_relationships = sum(len(s.structure.relationships) for s in solutions) / len(solutions)
+            html_parts.append("<div class='stat-box'>")
+            html_parts.append(f"<div class='stat-value'>{avg_relationships:.1f}</div>")
+            html_parts.append("<div class='stat-label'>Avg Relationships</div>")
+            html_parts.append("</div>")
+        
+        html_parts.append("</div>")
+        html_parts.append("</div>")
+        
+        # Statistics visualization
+        if solutions:
+            html_parts.append("<div class='section'>")
+            html_parts.append("<h2>Solution Statistics</h2>")
+            stats_html = self.visualize_solution_statistics(solutions)
+            # Extract just the plotly div
+            stats_html = stats_html.split('<body>')[1].split('</body>')[0] if '<body>' in stats_html else stats_html
+            html_parts.append(stats_html)
+            html_parts.append("</div>")
+        
+        # Comparison visualization
+        if len(solutions) > 1:
+            html_parts.append("<div class='section'>")
+            html_parts.append("<h2>Solution Comparison</h2>")
+            comparison_html = self.visualize_solutions_comparison(solutions)
+            comparison_html = comparison_html.split('<body>')[1].split('</body>')[0] if '<body>' in comparison_html else comparison_html
+            html_parts.append(comparison_html)
+            html_parts.append("</div>")
+        
+        # Individual solution details
+        if solutions:
+            html_parts.append("<div class='section'>")
+            html_parts.append("<h2>Individual Solutions</h2>")
+            for i, solution in enumerate(solutions[:3], 1):  # Show first 3
+                html_parts.append(f"<h3>Solution {i}: {solution.id}</h3>")
+                solution_html = self.visualize_solution_interactive(solution)
+                solution_html = solution_html.split('<body>')[1].split('</body>')[0] if '<body>' in solution_html else solution_html
+                html_parts.append(solution_html)
+            html_parts.append("</div>")
+        
+        # Exploration metrics
+        if exploration_state:
+            html_parts.append("<div class='section'>")
+            html_parts.append("<h2>Exploration Metrics</h2>")
+            metrics_html = self.visualize_exploration_metrics(exploration_state)
+            metrics_html = metrics_html.split('<body>')[1].split('</body>')[0] if '<body>' in metrics_html else metrics_html
+            html_parts.append(metrics_html)
+            html_parts.append("</div>")
+        
+        html_parts.extend([
+            "</body>",
+            "</html>"
+        ])
+        
+        return "\n".join(html_parts)
 
 
 # Convenience functions
@@ -596,3 +1310,77 @@ def compare_solutions(solutions: List[DesignObject]) -> Dict[str, Any]:
     """
     visualizer = SolutionVisualizer()
     return visualizer.create_solution_comparison(solutions)
+
+
+# Interactive visualization convenience functions
+def visualize_solution_interactive(solution: DesignObject, 
+                                   output_file: Optional[str] = None,
+                                   **kwargs) -> str:
+    """Convenience function for interactive solution visualization.
+    
+    Args:
+        solution: Solution to visualize
+        output_file: Optional output HTML file path
+        **kwargs: Additional visualization options
+        
+    Returns:
+        HTML string (or writes to file if output_file provided)
+    """
+    visualizer = SolutionVisualizer()
+    html = visualizer.visualize_solution_interactive(solution, **kwargs)
+    
+    if output_file:
+        Path(output_file).parent.mkdir(parents=True, exist_ok=True)
+        with open(output_file, 'w', encoding='utf-8') as f:
+            f.write(html)
+        return f"Visualization saved to {output_file}"
+    
+    return html
+
+
+def create_interactive_dashboard(solutions: List[DesignObject],
+                                exploration_state=None,
+                                output_file: Optional[str] = None) -> str:
+    """Convenience function to create interactive dashboard.
+    
+    Args:
+        solutions: List of solutions to visualize
+        exploration_state: Optional exploration state for metrics
+        output_file: Optional output HTML file path
+        
+    Returns:
+        HTML string (or writes to file if output_file provided)
+    """
+    visualizer = SolutionVisualizer()
+    html = visualizer.create_interactive_dashboard(solutions, exploration_state)
+    
+    if output_file:
+        Path(output_file).parent.mkdir(parents=True, exist_ok=True)
+        with open(output_file, 'w', encoding='utf-8') as f:
+            f.write(html)
+        return f"Dashboard saved to {output_file}"
+    
+    return html
+
+
+def visualize_solution_statistics(solutions: List[DesignObject],
+                                  output_file: Optional[str] = None) -> str:
+    """Convenience function for solution statistics visualization.
+    
+    Args:
+        solutions: List of solutions to analyze
+        output_file: Optional output HTML file path
+        
+    Returns:
+        HTML string (or writes to file if output_file provided)
+    """
+    visualizer = SolutionVisualizer()
+    html = visualizer.visualize_solution_statistics(solutions)
+    
+    if output_file:
+        Path(output_file).parent.mkdir(parents=True, exist_ok=True)
+        with open(output_file, 'w', encoding='utf-8') as f:
+            f.write(html)
+        return f"Statistics visualization saved to {output_file}"
+    
+    return html

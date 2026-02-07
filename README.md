@@ -37,6 +37,10 @@ pip install -e .
 
 # Install with development dependencies
 pip install -e ".[dev,test]"
+
+# Install with interactive visualization support
+pip install -r requirements-viz.txt
+# Or: pip install networkx plotly numpy
 ```
 
 ## Quick Start
@@ -119,6 +123,62 @@ report = engine.create_solution_report("solution_report.txt")
 # Save all visualizations
 engine.save_solution_visualizations("visualizations/", formats=["text", "dot", "mermaid"])
 ```
+
+### Interactive Visualization (requires networkx and plotly)
+
+```python
+# Install visualization dependencies first:
+# pip install networkx plotly numpy
+
+# All visualizations are saved to output/ directory by default
+
+# Create interactive HTML visualization of a single solution
+engine.visualize_solution_interactive(
+    solution_index=0,
+    output_file="solution.html",  # Saves to output/solution.html
+    layout="spring",  # Options: spring, circular, hierarchical, kamada_kawai
+    show_variables=True
+)
+
+# Compare multiple solutions side-by-side
+engine.visualize_solutions_comparison(
+    output_file="comparison.html",  # Saves to output/comparison.html
+    max_solutions=6
+)
+
+# Generate statistical charts
+engine.visualize_solution_statistics(
+    output_file="statistics.html"  # Saves to output/statistics.html
+)
+
+# Visualize exploration metrics
+engine.visualize_exploration_metrics(
+    output_file="metrics.html"  # Saves to output/metrics.html
+)
+
+# Create comprehensive interactive dashboard
+engine.create_interactive_dashboard(
+    output_file="dashboard.html"  # Saves to output/dashboard.html
+)
+
+# Open the HTML files in your browser to explore interactively!
+# All files are in the output/ directory
+```
+
+**Output Directory Configuration:**
+
+```python
+# Change output directory
+config = SolverConfig(
+    output_directory="my_results",  # Custom directory
+    create_output_directory=True    # Auto-create if needed
+)
+
+# Or save to current directory (old behavior)
+config = SolverConfig(output_directory=".")
+```
+
+See `docs/OUTPUT_ORGANIZATION.md` for more details.
 
 ### Debugging and Introspection
 

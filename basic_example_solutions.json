@@ -1,31 +1,22 @@
 {
   "export_info": {
-    "timestamp": "2026-01-27T15:07:11.363650",
-    "solution_count": 3,
+    "timestamp": "2026-02-07T14:54:47.305024",
+    "solution_count": 4,
     "format": "json",
     "include_metadata": true
   },
   "solutions": [
     {
-      "id": "candidate_22_1339",
+      "id": "candidate_22_7288",
       "structure": {
         "components": [
           {
-            "id": "comp_0",
-            "type": "storage",
+            "id": "comp_3",
+            "type": "network",
             "properties": {
-              "capacity": 22,
+              "capacity": 30,
               "priority": "low",
-              "active": true
-            }
-          },
-          {
-            "id": "comp_1",
-            "type": "actuator",
-            "properties": {
-              "capacity": 35,
-              "priority": "low",
-              "active": true
+              "active": false
             }
           }
         ],
@@ -40,101 +31,28 @@
       "metadata": {
         "generation_strategy": "breadth_first",
         "iteration": 22,
-        "timestamp": 1769494031.3392878
+        "timestamp": 1770443687.288303
       }
     },
     {
-      "id": "candidate_30_1349",
+      "id": "candidate_40_7295",
       "structure": {
         "components": [
           {
             "id": "comp_0",
             "type": "storage",
             "properties": {
-              "capacity": 22,
+              "capacity": 86,
               "priority": "low",
               "active": true
-            }
-          },
-          {
-            "id": "comp_1",
-            "type": "actuator",
-            "properties": {
-              "capacity": 35,
-              "priority": "low",
-              "active": true
-            }
-          },
-          {
-            "id": "comp_2",
-            "type": "memory",
-            "properties": {
-              "capacity": 16,
-              "priority": "medium",
-              "active": false
-            }
-          }
-        ],
-        "relationships": [],
-        "structural_constraints": 0
-      },
-      "variables": {
-        "assignments": {},
-        "domains": {},
-        "dependencies": {}
-      },
-      "metadata": {
-        "generation_strategy": "breadth_first",
-        "iteration": 30,
-        "timestamp": 1769494031.34952
-      }
-    },
-    {
-      "id": "candidate_44_1353",
-      "structure": {
-        "components": [
-          {
-            "id": "comp_0",
-            "type": "storage",
-            "properties": {
-              "capacity": 22,
-              "priority": "low",
-              "active": true
-            }
-          },
-          {
-            "id": "comp_1",
-            "type": "actuator",
-            "properties": {
-              "capacity": 35,
-              "priority": "low",
-              "active": true
-            }
-          },
-          {
-            "id": "comp_2",
-            "type": "memory",
-            "properties": {
-              "capacity": 16,
-              "priority": "medium",
-              "active": false
             }
           },
           {
             "id": "variant_comp_4",
             "type": "network",
             "properties": {
-              "capacity": 90,
+              "capacity": 79,
               "priority": "high",
-              "active": true
-            }
-          },
-          {
-            "id": "variant_comp_5",
-            "type": "storage",
-            "properties": {
-              "capacity": 39,
-              "priority": "low",
               "active": true
             }
           }
@@ -149,8 +67,82 @@
       },
       "metadata": {
         "generation_strategy": "breadth_first",
-        "iteration": 44,
-        "timestamp": 1769494031.3535082
+        "iteration": 40,
+        "timestamp": 1770443687.2953138
+      }
+    },
+    {
+      "id": "candidate_45_7296",
+      "structure": {
+        "components": [
+          {
+            "id": "comp_1",
+            "type": "sensor",
+            "properties": {
+              "capacity": 66,
+              "priority": "low",
+              "active": false
+            }
+          },
+          {
+            "id": "variant_comp_3",
+            "type": "network",
+            "properties": {
+              "capacity": 87,
+              "priority": "medium",
+              "active": false
+            }
+          }
+        ],
+        "relationships": [],
+        "structural_constraints": 0
+      },
+      "variables": {
+        "assignments": {},
+        "domains": {},
+        "dependencies": {}
+      },
+      "metadata": {
+        "generation_strategy": "breadth_first",
+        "iteration": 45,
+        "timestamp": 1770443687.2963147
+      }
+    },
+    {
+      "id": "candidate_48_7297",
+      "structure": {
+        "components": [
+          {
+            "id": "comp_0",
+            "type": "storage",
+            "properties": {
+              "capacity": 86,
+              "priority": "low",
+              "active": true
+            }
+          },
+          {
+            "id": "variant_comp_2",
+            "type": "network",
+            "properties": {
+              "capacity": 25,
+              "priority": "medium",
+              "active": true
+            }
+          }
+        ],
+        "relationships": [],
+        "structural_constraints": 0
+      },
+      "variables": {
+        "assignments": {},
+        "domains": {},
+        "dependencies": {}
+      },
+      "metadata": {
+        "generation_strategy": "breadth_first",
+        "iteration": 48,
+        "timestamp": 1770443687.297313
       }
     }
   ]

@@ -1,32 +1,45 @@
 SEP Solver Solution Report
 ==================================================
 
-Generated: 2026-01-27 15:07:11
-Total Solutions: 3
+Generated: 2026-02-07 14:54:47
+Total Solutions: 4
 
 Executive Summary
 --------------------
-- Solutions found: 3
-- Component range: 2-5 per solution
+- Solutions found: 4
+- Component range: 1-2 per solution
 - Relationship range: 0-0 per solution
 - Variable range: 0-0 per solution
 
 Comparative Analysis
 --------------------
 Structure Comparison:
-  Components: avg=3.3, range=2-5
+  Components: avg=1.8, range=1-2
   Relationships: avg=0.0, range=0-0
 
 Variable Analysis:
   Total unique variables: 0
   Common variables: 0
 
-Average solution similarity: 0.64
+Average solution similarity: 0.53
 
 Solution Details
 --------------------
 
-Solution 1: candidate_22_1339
+Solution 1: candidate_22_7288
+=============================
+Structure Overview:
+  - 1 components
+  - 0 relationships
+  - 0 variables
+
+Components:
+  - comp_3 (network)
+
+
+----------------------------------------
+
+Solution 2: candidate_40_7295
 =============================
 Structure Overview:
   - 2 components
@@ -35,37 +48,33 @@ Structure Overview:
 
 Components:
   - comp_0 (storage)
-  - comp_1 (actuator)
-
-
-----------------------------------------
-
-Solution 2: candidate_30_1349
-=============================
-Structure Overview:
-  - 3 components
-  - 0 relationships
-  - 0 variables
-
-Components:
-  - comp_0 (storage)
-  - comp_1 (actuator)
-  - comp_2 (memory)
-
-
-----------------------------------------
-
-Solution 3: candidate_44_1353
-=============================
-Structure Overview:
-  - 5 components
-  - 0 relationships
-  - 0 variables
-
-Components:
-  - comp_0 (storage)
-  - comp_1 (actuator)
-  - comp_2 (memory)
   - variant_comp_4 (network)
-  - variant_comp_5 (storage)
+
+
+----------------------------------------
+
+Solution 3: candidate_45_7296
+=============================
+Structure Overview:
+  - 2 components
+  - 0 relationships
+  - 0 variables
+
+Components:
+  - comp_1 (sensor)
+  - variant_comp_3 (network)
+
+
+----------------------------------------
+
+Solution 4: candidate_48_7297
+=============================
+Structure Overview:
+  - 2 components
+  - 0 relationships
+  - 0 variables
+
+Components:
+  - comp_0 (storage)
+  - variant_comp_2 (network)
 

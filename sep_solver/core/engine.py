@@ -848,6 +848,31 @@ class SEPEngine:
             "variable_range": (min(variable_counts), max(variable_counts))
         }
     
+    def _get_output_path(self, filename: str) -> str:
+        """Get the full output path for a file, using configured output directory.
+        
+        Args:
+            filename: The filename (can include subdirectories)
+            
+        Returns:
+            Full path to the output file
+        """
+        from pathlib import Path
+        import os
+        
+        # If filename is already an absolute path, use it as-is
+        if os.path.isabs(filename):
+            return filename
+        
+        # Otherwise, prepend the output directory
+        output_dir = self.config.output_directory
+        
+        # Create output directory if configured to do so
+        if self.config.create_output_directory:
+            Path(output_dir).mkdir(parents=True, exist_ok=True)
+        
+        return os.path.join(output_dir, filename)
+    
     def export_solutions(self, format: str = "json", filename: Optional[str] = None,
                         include_metadata: bool = True) -> str:
         """Export solutions in the specified format.
@@ -920,6 +945,222 @@ class SEPEngine:
                 self.logger.info(f"Created DOT visualization of {len(solutions)} solutions: {filename}")
         else:
             raise SEPSolverError(f"Unsupported visualization format: {format}")
+    
+    def visualize_solution_interactive(self, solution_index: int = 0, 
+                                      output_file: Optional[str] = None,
+                                      layout: str = "spring",
+                                      show_variables: bool = True) -> str:
+        """Create interactive HTML visualization of a solution.
+        
+        Args:
+            solution_index: Index of solution to visualize (default: 0)
+            output_file: Optional output HTML file path
+            layout: Graph layout algorithm ("spring", "circular", "hierarchical", "kamada_kawai")
+            show_variables: Whether to show variable assignments
+            
+        Returns:
+            HTML string with interactive visualization
+            
+        Raises:
+            SEPSolverError: If no solutions found or index out of range
+            ImportError: If required libraries not available
+        """
+        from ..utils.visualization import SolutionVisualizer
+        
+        solutions = self.get_solutions()
+        
+        if not solutions:
+            raise SEPSolverError("No solutions found to visualize")
+        
+        if solution_index >= len(solutions):
+            raise SEPSolverError(f"Solution index {solution_index} out of range (0-{len(solutions)-1})")
+        
+        visualizer = SolutionVisualizer()
+        
+        if not visualizer.interactive_enabled:
+            raise ImportError(
+                "Interactive visualization requires 'networkx' and 'plotly'. "
+                "Install with: pip install networkx plotly"
+            )
+        
+        html = visualizer.visualize_solution_interactive(
+            solutions[solution_index],
+            layout=layout,
+            show_variables=show_variables
+        )
+        
+        if output_file:
+            from pathlib import Path
+            output_path = Path(output_file)
+            output_path.parent.mkdir(parents=True, exist_ok=True)
+            with open(output_path, 'w', encoding='utf-8') as f:
+                f.write(html)
+            if self.logger:
+                self.logger.info(f"Created interactive visualization: {output_file}")
+            return f"Visualization saved to {output_file}"
+        
+        return html
+    
+    def visualize_solutions_comparison(self, output_file: Optional[str] = None,
+                                      max_solutions: int = 6) -> str:
+        """Create interactive comparison visualization of multiple solutions.
+        
+        Args:
+            output_file: Optional output HTML file path
+            max_solutions: Maximum number of solutions to display
+            
+        Returns:
+            HTML string with interactive comparison
+            
+        Raises:
+            SEPSolverError: If no solutions found
+            ImportError: If required libraries not available
+        """
+        from ..utils.visualization import SolutionVisualizer
+        
+        solutions = self.get_solutions()
+        
+        if not solutions:
+            raise SEPSolverError("No solutions found to visualize")
+        
+        visualizer = SolutionVisualizer()
+        
+        if not visualizer.interactive_enabled:
+            raise ImportError(
+                "Interactive visualization requires 'networkx' and 'plotly'. "
+                "Install with: pip install networkx plotly"
+            )
+        
+        html = visualizer.visualize_solutions_comparison(solutions, max_solutions=max_solutions)
+        
+        if output_file:
+            from pathlib import Path
+            output_path = Path(output_file)
+            output_path.parent.mkdir(parents=True, exist_ok=True)
+            with open(output_path, 'w', encoding='utf-8') as f:
+                f.write(html)
+            if self.logger:
+                self.logger.info(f"Created comparison visualization: {output_file}")
+            return f"Comparison saved to {output_file}"
+        
+        return html
+    
+    def visualize_solution_statistics(self, output_file: Optional[str] = None) -> str:
+        """Create interactive statistical visualization of solutions.
+        
+        Args:
+            output_file: Optional output HTML file path
+            
+        Returns:
+            HTML string with interactive statistics
+            
+        Raises:
+            SEPSolverError: If no solutions found
+            ImportError: If required libraries not available
+        """
+        from ..utils.visualization import SolutionVisualizer
+        
+        solutions = self.get_solutions()
+        
+        if not solutions:
+            raise SEPSolverError("No solutions found to visualize")
+        
+        visualizer = SolutionVisualizer()
+        
+        if not visualizer.interactive_enabled:
+            raise ImportError(
+                "Interactive visualization requires 'networkx' and 'plotly'. "
+                "Install with: pip install networkx plotly"
+            )
+        
+        html = visualizer.visualize_solution_statistics(solutions)
+        
+        if output_file:
+            from pathlib import Path
+            output_path = Path(output_file)
+            output_path.parent.mkdir(parents=True, exist_ok=True)
+            with open(output_path, 'w', encoding='utf-8') as f:
+                f.write(html)
+            if self.logger:
+                self.logger.info(f"Created statistics visualization: {output_file}")
+            return f"Statistics saved to {output_file}"
+        
+        return html
+    
+    def create_interactive_dashboard(self, output_file: str) -> None:
+        """Create comprehensive interactive dashboard with all visualizations.
+        
+        Args:
+            output_file: Output HTML file path
+            
+        Raises:
+            SEPSolverError: If no solutions found
+            ImportError: If required libraries not available
+        """
+        from ..utils.visualization import SolutionVisualizer
+        from pathlib import Path
+        
+        solutions = self.get_solutions()
+        
+        if not solutions:
+            raise SEPSolverError("No solutions found to visualize")
+        
+        visualizer = SolutionVisualizer()
+        
+        if not visualizer.interactive_enabled:
+            raise ImportError(
+                "Interactive visualization requires 'networkx' and 'plotly'. "
+                "Install with: pip install networkx plotly"
+            )
+        
+        html = visualizer.create_interactive_dashboard(
+            solutions,
+            exploration_state=self.exploration_state
+        )
+        
+        output_path = Path(output_file)
+        output_path.parent.mkdir(parents=True, exist_ok=True)
+        with open(output_path, 'w', encoding='utf-8') as f:
+            f.write(html)
+        
+        if self.logger:
+            self.logger.info(f"Created interactive dashboard: {output_file}")
+    
+    def visualize_exploration_metrics(self, output_file: Optional[str] = None) -> str:
+        """Create interactive visualization of exploration metrics.
+        
+        Args:
+            output_file: Optional output HTML file path
+            
+        Returns:
+            HTML string with metrics visualization
+            
+        Raises:
+            ImportError: If required libraries not available
+        """
+        from ..utils.visualization import SolutionVisualizer
+        
+        visualizer = SolutionVisualizer()
+        
+        if not visualizer.interactive_enabled:
+            raise ImportError(
+                "Interactive visualization requires 'networkx' and 'plotly'. "
+                "Install with: pip install networkx plotly"
+            )
+        
+        html = visualizer.visualize_exploration_metrics(self.exploration_state)
+        
+        if output_file:
+            from pathlib import Path
+            output_path = Path(output_file)
+            output_path.parent.mkdir(parents=True, exist_ok=True)
+            with open(output_path, 'w', encoding='utf-8') as f:
+                f.write(html)
+            if self.logger:
+                self.logger.info(f"Created metrics visualization: {output_file}")
+            return f"Metrics visualization saved to {output_file}"
+        
+        return html
     
     def generate_solution_report(self, filename: str, include_comparison: bool = True) -> None:
         """Generate comprehensive solution report.

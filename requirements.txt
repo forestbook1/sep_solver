@@ -1,6 +1,10 @@
 # Core dependencies
 jsonschema>=4.0.0
 
+# Optional visualization dependencies
+# Install with: pip install -r requirements.txt -r requirements-viz.txt
+# Or: pip install networkx plotly
+
 # Testing dependencies
 pytest>=7.0.0
 pytest-cov>=4.0.0

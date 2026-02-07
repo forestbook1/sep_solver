@@ -4,9 +4,15 @@ from dataclasses import dataclass, field
 from typing import Dict, Any, Optional, List, Union, Callable
 import json
 import os
-import yaml
 from pathlib import Path
 from .exceptions import ConfigurationError
+
+# Optional yaml support
+try:
+    import yaml
+    HAS_YAML = True
+except ImportError:
+    HAS_YAML = False
 
 
 @dataclass
@@ -46,6 +52,11 @@ class SolverConfig:
     cache_evaluations: bool = True
     cache_size: int = 1000
     
+    # Output settings
+    output_directory: str = "output"
+    create_output_directory: bool = True
+    overwrite_existing_files: bool = True
+    
     # Runtime modification settings
     allow_runtime_modification: bool = True
     modification_callbacks: Dict[str, List[Callable]] = field(default_factory=dict)
@@ -73,18 +84,21 @@ class SolverConfig:
             
             with open(path, 'r') as f:
                 if path.suffix.lower() in ['.yaml', '.yml']:
-                    try:
-                        config_data = yaml.safe_load(f)
-                    except ImportError:
-                        raise ConfigurationError("PyYAML is required for YAML configuration files")
+                    if not HAS_YAML:
+                        raise ConfigurationError("PyYAML is required for YAML configuration files. Install with: pip install PyYAML")
+                    config_data = yaml.safe_load(f)
                 else:
                     config_data = json.load(f)
                 
             return cls.from_dict(config_data)
             
-        except (json.JSONDecodeError, yaml.YAMLError) as e:
-            raise ConfigurationError(f"Invalid format in configuration file: {e}")
+        except json.JSONDecodeError as e:
+            raise ConfigurationError(f"Invalid JSON format in configuration file: {e}")
         except Exception as e:
+            if HAS_YAML and isinstance(e, yaml.YAMLError):
+                raise ConfigurationError(f"Invalid YAML format in configuration file: {e}")
+            if isinstance(e, ConfigurationError):
+                raise
             raise ConfigurationError(f"Error loading configuration file: {e}")
     
     @classmethod
@@ -162,10 +176,9 @@ class SolverConfig:
             
             with open(path, 'w') as f:
                 if format.lower() == "yaml":
-                    try:
-                        yaml.dump(config_data, f, default_flow_style=False, indent=2)
-                    except ImportError:
-                        raise ConfigurationError("PyYAML is required for YAML format")
+                    if not HAS_YAML:
+                        raise ConfigurationError("PyYAML is required for YAML format. Install with: pip install PyYAML")
+                    yaml.dump(config_data, f, default_flow_style=False, indent=2)
                 else:
                     json.dump(config_data, f, indent=2)
                 

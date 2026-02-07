@@ -1,0 +1,10 @@
+# Optional visualization dependencies for SEP Solver
+# Install with: pip install -r requirements-viz.txt
+
+# Interactive visualization
+networkx>=3.0
+plotly>=5.0.0
+numpy>=1.20.0  # Required by Plotly Express
+
+# Optional: For better graph layouts
+# scipy>=1.10.0  # Improves NetworkX layout algorithms
